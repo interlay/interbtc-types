@@ -1,0 +1,14 @@
+{
+  "name": "@interlay/polkabtc-types",
+  "version": "0.1.0",
+  "description": "Substrate types used in PolkaBTC parachain",
+  "main": "index.js",
+  "repository": "https://github.com/interlay/polkabtc-types",
+  "author": "Interlay Ltd",
+  "license": "Apache-2.0",
+  "keywords": [
+    "Polkadot",
+    "Bitcoin",
+    "PolkaBTC"
+  ]
+}
