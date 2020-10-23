@@ -1,1 +1,2 @@
-module.exports = require('./definitions.json');
+import definitions from "./definitions.json";
+export default definitions;
