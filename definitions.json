@@ -54,15 +54,6 @@
             "no_data": "BTreeSet<u32>",
             "invalid": "BTreeSet<u32>"
         },
-        "Issue": {
-            "vault": "AccountId",
-            "opentime": "BlockNumber",
-            "griefing_collateral": "DOT",
-            "amount": "PolkaBTC",
-            "requester": "AccountId",
-            "btc_address": "H160",
-            "completed": "bool"
-        },
         "Vault": {
             "id": "AccountId",
             "to_be_issued_tokens": "PolkaBTC",
