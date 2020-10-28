@@ -72,26 +72,6 @@
             "banned_until": "Option<BlockNumber>",
             "status": "VaultStatus"
         },
-        "Redeem": {
-            "vault": "AccountId",
-            "opentime": "BlockNumber",
-            "amount_polka_btc": "PolkaBTC",
-            "amount_btc": "PolkaBTC",
-            "amount_dot": "DOT",
-            "premium_dot": "DOT",
-            "redeemer": "AccountId",
-            "btc_address": "H160"
-        },
-        "Replace": {
-            "old_vault": "AccountId",
-            "open_time": "BlockNumber",
-            "amount": "PolkaBTC",
-            "griefing_collateral": "DOT",
-            "new_vault": "Option<AccountId>",
-            "collateral": "DOT",
-            "accept_time": "Option<BlockNumber>",
-            "btc_address": "H160"
-        },
         "ActiveStakedRelayer": {
             "stake": "DOT"
         },
@@ -176,6 +156,16 @@
             "amount_dot": "DOT",
             "premium_dot": "DOT",
             "redeemer": "AccountId",
+            "btc_address": "H160"
+        },
+        "ReplaceRequest": {
+            "old_vault": "AccountId",
+            "open_time": "BlockNumber",
+            "amount": "PolkaBTC",
+            "griefing_collateral": "DOT",
+            "new_vault": "Option<AccountId>",
+            "collateral": "DOT",
+            "accept_time": "Option<BlockNumber>",
             "btc_address": "H160"
         }
     },
