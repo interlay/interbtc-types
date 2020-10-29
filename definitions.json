@@ -103,33 +103,6 @@
                 "Bonding(BlockNumber)"
             ]
         },
-        "GetAddressResponse": {
-            "address": "String"
-        },
-        "GetParachainStatusResponse": {
-            "status": "StatusCode"
-        },
-        "GetStatusUpdateRequest": {
-            "status_update_id": "u64"
-        },
-        "GetStatusUpdateResponse": {
-            "status": "StatusUpdate"
-        },
-        "RegisterStakedRelayerRequest": {
-            "stake": "u128"
-        },
-        "SuggestStatusUpdateRequest": {
-            "deposit": "u128",
-            "status_code": "StatusCode",
-            "add_error": "Option<ErrorCode>",
-            "remove_error": "Option<ErrorCode>",
-            "block_hash": "Option<H256Le>",
-            "message": "String"
-        },
-        "VoteOnStatusUpdateRequest": {
-            "status_update_id": "U256",
-            "approve": "bool"
-        },
         "IssueRequest": {
             "vault": "AccountId",
             "opentime": "BlockNumber",
@@ -158,6 +131,40 @@
             "collateral": "DOT",
             "accept_time": "Option<BlockNumber>",
             "btc_address": "H160"
+        },
+
+        "GetAddressJsonRpcResponse": {
+            "address": "String"
+        },
+        "RegisterStakedRelayerJsonRpcRequest": {
+            "stake": "u128"
+        },
+        "SuggestStatusUpdateJsonRpcRequest": {
+            "deposit": "u128",
+            "status_code": "StatusCode",
+            "add_error": "Option<ErrorCode>",
+            "remove_error": "Option<ErrorCode>",
+            "block_hash": "Option<H256Le>",
+            "message": "String"
+        },
+        "VoteOnStatusUpdateJsonRpcRequest": {
+            "status_update_id": "U256",
+            "approve": "bool"
+        },
+
+        "ReplaceRequestJsonRpcRequest": {
+            "amount": "u128",
+            "griefing_collateral": "u128"
+        },
+        "RegisterVaultJsonRpcRequest": {
+            "collateral": "u128",
+            "btc_address": "H160"
+        },
+        "ChangeCollateralJsonRpcRequest": {
+            "amount": "u128"
+        },
+        "SetBtcAddressJsonRpcRequest": {
+            "address": "H160"
         }
     },
     "rpc": {
