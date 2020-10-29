@@ -165,6 +165,9 @@
         },
         "SetBtcAddressJsonRpcRequest": {
             "address": "H160"
+        },
+        "WithdrawReplaceJsonRpcRequest": {
+            "replace_id": "H256"
         }
     },
     "rpc": {
