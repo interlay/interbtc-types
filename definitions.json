@@ -133,8 +133,8 @@
             "btc_address": "H160"
         },
 
-        "GetAddressJsonRpcResponse": {
-            "address": "String"
+        "AccountIdJsonRpcResponse": {
+            "account_id": "String"
         },
         "RegisterStakedRelayerJsonRpcRequest": {
             "stake": "u128"
@@ -151,7 +151,6 @@
             "status_update_id": "U256",
             "approve": "bool"
         },
-
         "ReplaceRequestJsonRpcRequest": {
             "amount": "u128",
             "griefing_collateral": "u128"
