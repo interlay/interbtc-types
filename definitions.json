@@ -163,7 +163,7 @@
         "ChangeCollateralJsonRpcRequest": {
             "amount": "u128"
         },
-        "SetBtcAddressJsonRpcRequest": {
+        "UpdateBtcAddressJsonRpcRequest": {
             "address": "H160"
         },
         "WithdrawReplaceJsonRpcRequest": {
