@@ -210,6 +210,20 @@
                     }
                 ],
                 "type": "u64"
+            },
+            "getCollateralizationFromVaultAndCollateral": {
+                "description": "Returns the collateralization of a specific vault and collateral",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "collateral",
+                        "type": "DOT"
+                    }
+                ],
+                "type": "u64"
             }
         },
         "exchangeRateOracle": {
