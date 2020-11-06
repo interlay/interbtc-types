@@ -54,12 +54,16 @@
             "no_data": "BTreeSet<u32>",
             "invalid": "BTreeSet<u32>"
         },
+        "Wallet": {
+            "addresses": "BTreeSet<H160>",
+            "address": "H160"
+        },
         "Vault": {
             "id": "AccountId",
             "to_be_issued_tokens": "PolkaBTC",
             "issued_tokens": "PolkaBTC",
             "to_be_redeemed_tokens": "PolkaBTC",
-            "btc_address": "H160",
+            "wallet": "Wallet",
             "banned_until": "Option<BlockNumber>",
             "status": "VaultStatus"
         },
