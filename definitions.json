@@ -228,6 +228,11 @@
                     }
                 ],
                 "type": "u64"
+            },
+            "getTotalCollateralization": {
+                "description": "Get the total collateralization of the system",
+                "params": [],
+                "type": "u64"
             }
         },
         "exchangeRateOracle": {
