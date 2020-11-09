@@ -233,6 +233,16 @@
                 "description": "Get the total collateralization of the system",
                 "params": [],
                 "type": "u64"
+            },
+            "getRequiredCollateralForVault": {
+                "description": "Get the amount of collateral required for the given vault to be at the current SecureCollateralThreshold with the current exchange rate",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "DOT"
             }
         },
         "exchangeRateOracle": {
