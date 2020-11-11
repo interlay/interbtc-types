@@ -283,6 +283,16 @@
                     }
                 ],
                 "type": "Vec<(H256, IssueRequest)>"
+            },
+            "getVaultIssueRequests": {
+                "description": "Get all issue requests for a particular vault",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, IssueRequest)>"
             }
         },
         "redeem": {
@@ -291,6 +301,16 @@
                 "params": [
                     {
                         "name": "account_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, RedeemRequest)>"
+            },
+            "getVaultRedeemRequests": {
+                "description": "Get all redeem requests for a particular vault",
+                "params": [
+                    {
+                        "name": "vault_id",
                         "type": "AccountId"
                     }
                 ],
