@@ -157,6 +157,11 @@
     },
     "BalanceWrapper": {
       "amount": "String"
+    },
+    "BtcTxFeesPerByte": {
+      "fast": "u32",
+      "half": "u32",
+      "hour": "u32"
     }
   },
   "rpc": {
