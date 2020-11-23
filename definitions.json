@@ -204,6 +204,10 @@
           {
             "name": "vault_id",
             "type": "AccountId"
+          },
+          {
+            "name": "only_issued",
+            "type": "bool"
           }
         ],
         "type": "u64"
@@ -237,10 +241,6 @@
           {
             "name": "vault_id",
             "type": "AccountId"
-          },
-          {
-            "name": "only_issued",
-            "type": "bool"
           }
         ],
         "type": "BalanceWrapper"
