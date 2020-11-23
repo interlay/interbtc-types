@@ -107,7 +107,8 @@
       "amount_dot": "DOT",
       "premium_dot": "DOT",
       "redeemer": "AccountId",
-      "btc_address": "H160"
+      "btc_address": "H160",
+      "completed": "bool"
     },
     "ReplaceRequest": {
       "old_vault": "AccountId",
@@ -117,7 +118,8 @@
       "new_vault": "Option<AccountId>",
       "collateral": "DOT",
       "accept_time": "Option<BlockNumber>",
-      "btc_address": "H160"
+      "btc_address": "H160",
+      "completed": "bool"
     },
 
     "AccountIdJsonRpcResponse": {
