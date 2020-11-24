@@ -22,6 +22,13 @@
     "VaultStatus": {
       "_enum": ["Active", "Liquidated", "CommittedTheft"]
     },
+    "BtcPayload": {
+      "_enum": {
+        "P2SH": "H160",
+        "P2PKH": "H160",
+        "P2WPKH": "(u8, H160)"
+      }
+    },
     "RawBlockHeader": {
       "0": "[u8; 80]"
     },
@@ -47,8 +54,8 @@
       "invalid": "BTreeSet<u32>"
     },
     "Wallet": {
-      "addresses": "BTreeSet<H160>",
-      "address": "H160"
+      "addresses": "BTreeSet<BtcPayload>",
+      "address": "BtcPayload"
     },
     "Vault": {
       "id": "AccountId",
@@ -96,7 +103,7 @@
       "griefing_collateral": "DOT",
       "amount": "PolkaBTC",
       "requester": "AccountId",
-      "btc_address": "H160",
+      "btc_address": "BtcPayload",
       "completed": "bool"
     },
     "RedeemRequest": {
@@ -107,7 +114,7 @@
       "amount_dot": "DOT",
       "premium_dot": "DOT",
       "redeemer": "AccountId",
-      "btc_address": "H160",
+      "btc_address": "BtcPayload",
       "completed": "bool"
     },
     "ReplaceRequest": {
@@ -118,8 +125,16 @@
       "new_vault": "Option<AccountId>",
       "collateral": "DOT",
       "accept_time": "Option<BlockNumber>",
-      "btc_address": "H160",
+      "btc_address": "BtcPayload",
       "completed": "bool"
+    },
+    "BalanceWrapper": {
+      "amount": "String"
+    },
+    "BtcTxFeesPerByte": {
+      "fast": "u32",
+      "half": "u32",
+      "hour": "u32"
     },
 
     "AccountIdJsonRpcResponse": {
@@ -145,25 +160,13 @@
       "griefing_collateral": "u128"
     },
     "RegisterVaultJsonRpcRequest": {
-      "collateral": "u128",
-      "btc_address": "H160"
+      "collateral": "u128"
     },
     "ChangeCollateralJsonRpcRequest": {
       "amount": "u128"
     },
-    "UpdateBtcAddressJsonRpcRequest": {
-      "address": "H160"
-    },
     "WithdrawReplaceJsonRpcRequest": {
       "replace_id": "H256"
-    },
-    "BalanceWrapper": {
-      "amount": "String"
-    },
-    "BtcTxFeesPerByte": {
-      "fast": "u32",
-      "half": "u32",
-      "hour": "u32"
     }
   },
   "rpc": {
