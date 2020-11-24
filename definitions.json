@@ -22,6 +22,9 @@
     "VaultStatus": {
       "_enum": ["Active", "Liquidated", "CommittedTheft"]
     },
+    "Payload": {
+      "_enum": ["P2SH(H160)", "P2PKH(H160)", "P2WPKH(u8, H160)"]
+    },
     "RawBlockHeader": {
       "0": "[u8; 80]"
     },
