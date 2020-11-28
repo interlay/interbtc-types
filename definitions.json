@@ -1,6 +1,7 @@
 {
   "types": [
     {
+      "minmax": [0, 2],
       "types": {
         "H256Le": "H256",
         "DOT": "u128",
