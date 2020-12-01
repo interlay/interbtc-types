@@ -49,9 +49,16 @@
           "no_data": "BTreeSet<u32>",
           "invalid": "BTreeSet<u32>"
         },
+        "BtcAddress": {
+          "_enum": {
+            "P2PKH": "H160",
+            "P2SH": "H160",
+            "P2WPKH": "(u8, H160)"
+          }
+        },
         "Wallet": {
-          "addresses": "BTreeSet<H160>",
-          "address": "H160"
+          "addresses": "BTreeSet<BtcAddress>",
+          "address": "BtcAddress"
         },
         "Vault": {
           "id": "AccountId",
@@ -99,7 +106,7 @@
           "griefing_collateral": "DOT",
           "amount": "PolkaBTC",
           "requester": "AccountId",
-          "btc_address": "H160",
+          "btc_address": "BtcAddress",
           "completed": "bool"
         },
         "RedeemRequest": {
@@ -110,7 +117,7 @@
           "amount_dot": "DOT",
           "premium_dot": "DOT",
           "redeemer": "AccountId",
-          "btc_address": "H160",
+          "btc_address": "BtcAddress",
           "completed": "bool"
         },
         "ReplaceRequest": {
@@ -121,8 +128,16 @@
           "new_vault": "Option<AccountId>",
           "collateral": "DOT",
           "accept_time": "Option<BlockNumber>",
-          "btc_address": "H160",
+          "btc_address": "BtcAddress",
           "completed": "bool"
+        },
+        "BalanceWrapper": {
+          "amount": "String"
+        },
+        "BtcTxFeesPerByte": {
+          "fast": "u32",
+          "half": "u32",
+          "hour": "u32"
         },
 
         "AccountIdJsonRpcResponse": {
@@ -148,25 +163,19 @@
           "griefing_collateral": "u128"
         },
         "RegisterVaultJsonRpcRequest": {
-          "collateral": "u128",
-          "btc_address": "H160"
+          "collateral": "u128"
+        },
+        "RegisterVaultJsonRpcResponse": {
+          "address": "BtcAddress"
         },
         "ChangeCollateralJsonRpcRequest": {
           "amount": "u128"
         },
-        "UpdateBtcAddressJsonRpcRequest": {
-          "address": "H160"
+        "UpdateBtcAddressJsonRpcResponse": {
+          "address": "BtcAddress"
         },
         "WithdrawReplaceJsonRpcRequest": {
           "replace_id": "H256"
-        },
-        "BalanceWrapper": {
-          "amount": "String"
-        },
-        "BtcTxFeesPerByte": {
-          "fast": "u32",
-          "half": "u32",
-          "hour": "u32"
         }
       }
     }
