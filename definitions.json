@@ -53,7 +53,7 @@
           "_enum": {
             "P2PKH": "H160",
             "P2SH": "H160",
-            "P2WPKH": "(u8, H160)"
+            "P2WPKHv0": "H160"
           }
         },
         "Wallet": {
