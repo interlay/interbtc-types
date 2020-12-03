@@ -139,6 +139,7 @@
           "half": "u32",
           "hour": "u32"
         },
+        "Version": "u32",
 
         "AccountIdJsonRpcResponse": {
           "account_id": "String"
