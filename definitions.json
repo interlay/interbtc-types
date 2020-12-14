@@ -122,7 +122,8 @@
           "btc_address": "BtcAddress",
           "completed": "bool",
           "cancelled": "bool",
-          "fee": "PolkaBTC"
+          "fee": "PolkaBTC",
+          "reimburse": "bool"
         },
         "ReplaceRequest": {
           "old_vault": "AccountId",
