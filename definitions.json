@@ -107,7 +107,9 @@
           "amount": "PolkaBTC",
           "requester": "AccountId",
           "btc_address": "BtcAddress",
-          "completed": "bool"
+          "completed": "bool",
+          "cancelled": "bool",
+          "fee": "PolkaBTC"
         },
         "RedeemRequest": {
           "vault": "AccountId",
@@ -118,7 +120,9 @@
           "premium_dot": "DOT",
           "redeemer": "AccountId",
           "btc_address": "BtcAddress",
-          "completed": "bool"
+          "completed": "bool",
+          "cancelled": "bool",
+          "fee": "PolkaBTC"
         },
         "ReplaceRequest": {
           "old_vault": "AccountId",
@@ -129,7 +133,8 @@
           "collateral": "DOT",
           "accept_time": "Option<BlockNumber>",
           "btc_address": "BtcAddress",
-          "completed": "bool"
+          "completed": "bool",
+          "cancelled": "bool"
         },
         "BalanceWrapper": {
           "amount": "String"
