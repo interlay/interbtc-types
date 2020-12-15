@@ -182,7 +182,8 @@
         },
         "WithdrawReplaceJsonRpcRequest": {
           "replace_id": "H256"
-        }
+        },
+        "FixedPoint": "FixedI128"
       }
     }
   ],
