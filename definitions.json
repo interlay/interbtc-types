@@ -161,6 +161,12 @@
           "block_hash": "Option<H256Le>",
           "message": "String"
         },
+        "SystemVault": {
+          "id": "AccountId",
+          "to_be_issued_tokens": "PolkaBTC",
+          "issued_tokens": "PolkaBTC",
+          "to_be_redeemed_tokens": "PolkaBTC"
+        },
         "VoteOnStatusUpdateJsonRpcRequest": {
           "status_update_id": "U256",
           "approve": "bool"
