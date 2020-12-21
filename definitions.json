@@ -265,6 +265,16 @@
         "params": [],
         "type": "u64"
       },
+      "getRequiredCollateralForPolkabtc": {
+        "description": "Get the amount of collateral required to issue an amount of PolkaBTC",
+        "params": [
+          {
+            "name": "amount_btc",
+            "type": "BalanceWrapper"
+          }
+        ],
+        "type": "BalanceWrapper"
+      },
       "getRequiredCollateralForVault": {
         "description": "Get the amount of collateral required for the given vault to be at the current SecureCollateralThreshold with the current exchange rate",
         "params": [
@@ -274,6 +284,16 @@
           }
         ],
         "type": "BalanceWrapper"
+      },
+      "isVaultBelowAuctionThreshold": {
+        "description": "Check if the identified vault is below the auction threshold",
+        "params": [
+          {
+            "name": "vault_id",
+            "type": "AccountId"
+          }
+        ],
+        "type": "bool"
       }
     },
     "exchangeRateOracle": {
@@ -286,6 +306,16 @@
           }
         ],
         "type": "DOT"
+      },
+      "dotsToBtc": {
+        "description": "DOT to BTC conversion rate",
+        "params": [
+          {
+            "name": "amount",
+            "type": "DOT"
+          }
+        ],
+        "type": "PolkaBTC"
       }
     },
     "stakedRelayers": {
