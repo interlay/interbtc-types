@@ -105,16 +105,17 @@
           "opentime": "BlockNumber",
           "griefing_collateral": "DOT",
           "amount": "PolkaBTC",
+          "fee": "PolkaBTC",
           "requester": "AccountId",
           "btc_address": "BtcAddress",
           "completed": "bool",
-          "cancelled": "bool",
-          "fee": "PolkaBTC"
+          "cancelled": "bool"
         },
         "RedeemRequest": {
           "vault": "AccountId",
           "opentime": "BlockNumber",
           "amount_polka_btc": "PolkaBTC",
+          "fee": "PolkaBTC",
           "amount_btc": "PolkaBTC",
           "amount_dot": "DOT",
           "premium_dot": "DOT",
@@ -122,7 +123,6 @@
           "btc_address": "BtcAddress",
           "completed": "bool",
           "cancelled": "bool",
-          "fee": "PolkaBTC",
           "reimburse": "bool"
         },
         "ReplaceRequest": {
