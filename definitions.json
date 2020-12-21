@@ -302,20 +302,20 @@
         "params": [
           {
             "name": "amount",
-            "type": "PolkaBTC"
+            "type": "BalanceWrapper"
           }
         ],
-        "type": "DOT"
+        "type": "BalanceWrapper"
       },
       "dotsToBtc": {
         "description": "DOT to BTC conversion rate",
         "params": [
           {
             "name": "amount",
-            "type": "DOT"
+            "type": "BalanceWrapper"
           }
         ],
-        "type": "PolkaBTC"
+        "type": "BalanceWrapper"
       }
     },
     "stakedRelayers": {
