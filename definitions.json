@@ -250,7 +250,7 @@
             "type": "bool"
           }
         ],
-        "type": "u64"
+        "type": "UnsignedFixedPoint"
       },
       "getCollateralizationFromVaultAndCollateral": {
         "description": "Returns the collateralization of a specific vault and collateral",
@@ -268,12 +268,12 @@
             "type": "bool"
           }
         ],
-        "type": "u64"
+        "type": "UnsignedFixedPoint"
       },
       "getTotalCollateralization": {
         "description": "Get the total collateralization of the system",
         "params": [],
-        "type": "u64"
+        "type": "UnsignedFixedPoint"
       },
       "getRequiredCollateralForPolkabtc": {
         "description": "Get the amount of collateral required to issue an amount of PolkaBTC",
