@@ -137,6 +137,16 @@
           "completed": "bool",
           "cancelled": "bool"
         },
+        "RefundRequest": {
+          "vault": "AccountId",
+          "amount_polka_btc": "PolkaBTC",
+          "fee": "PolkaBTC",
+          "amount_btc": "PolkaBTC",
+          "issuer": "AccountId",
+          "btc_address": "BtcAddress",
+          "issue_id": "H256",
+          "completed": "bool"
+        },
         "BalanceWrapper": {
           "amount": "String"
         },
@@ -380,7 +390,7 @@
     },
     "replace": {
       "getOldVaultReplaceRequests": {
-        "description": " Get all replace requests from a particular vault",
+        "description": "Get all replace requests from a particular vault",
         "params": [
           {
             "name": "account_id",
@@ -398,6 +408,28 @@
           }
         ],
         "type": "Vec<(H256, ReplaceRequest)>"
+      }
+    },
+    "refund": {
+      "getRefundRequests": {
+        "description": "Get all refund requests for a particular account",
+        "params": [
+          {
+            "name": "account_id",
+            "type": "AccountId"
+          }
+        ],
+        "type": "Vec<(H256, RefundRequest)>"
+      },
+      "getVaultRefundRequests": {
+        "description": "Get all refund requests for a particular vault",
+        "params": [
+          {
+            "name": "account_id",
+            "type": "AccountId"
+          }
+        ],
+        "type": "Vec<(H256, RefundRequest)>"
       }
     }
   }
