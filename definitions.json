@@ -182,8 +182,7 @@
           "approve": "bool"
         },
         "ReplaceRequestJsonRpcRequest": {
-          "amount": "u128",
-          "griefing_collateral": "u128"
+          "amount": "u128"
         },
         "RegisterVaultJsonRpcRequest": {
           "collateral": "u128"
