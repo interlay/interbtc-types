@@ -69,9 +69,6 @@
           "banned_until": "Option<BlockNumber>",
           "status": "VaultStatus"
         },
-        "ActiveStakedRelayer": {
-          "stake": "DOT"
-        },
         "StatusUpdate": {
           "new_status_code": "StatusCode",
           "old_status_code": "StatusCode",
@@ -93,12 +90,9 @@
         "ProposalStatus": {
           "_enum": ["Pending", "Accepted", "Rejected", "Expired"]
         },
-        "InactiveStakedRelayer": {
+        "StakedRelayer": {
           "stake": "DOT",
-          "status": "StakedRelayerStatus<BlockNumber>"
-        },
-        "StakedRelayerStatus": {
-          "_enum": ["Unknown", "Idle", "Bonding(BlockNumber)"]
+          "height": "BlockNumber"
         },
         "IssueRequest": {
           "vault": "AccountId",
