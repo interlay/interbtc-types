@@ -187,6 +187,9 @@
         "RegisterVaultJsonRpcRequest": {
           "collateral": "u128"
         },
+        "FundAccountJsonRpcRequest": {
+          "account_id": "AccountId"
+        },
         "RegisterVaultJsonRpcResponse": {
           "address": "BtcAddress"
         },
