@@ -1,14 +1,21 @@
 {
   "types": [
     {
-      "minmax": [0, 2],
+      "minmax": [
+        0,
+        2
+      ],
       "types": {
         "H256Le": "H256",
         "DOT": "u128",
         "PolkaBTC": "Balance",
         "BTCBalance": "u128",
         "StatusCode": {
-          "_enum": ["Running", "Error", "Shutdown"]
+          "_enum": [
+            "Running",
+            "Error",
+            "Shutdown"
+          ]
         },
         "Address": "AccountId",
         "LookupSource": "AccountId",
@@ -23,7 +30,11 @@
           ]
         },
         "VaultStatus": {
-          "_enum": ["Active", "Liquidated", "CommittedTheft"]
+          "_enum": [
+            "Active",
+            "Liquidated",
+            "CommittedTheft"
+          ]
         },
         "RawBlockHeader": {
           "0": "[u8; 80]"
@@ -56,9 +67,10 @@
             "P2WPKHv0": "H160"
           }
         },
+        "BtcPublicKey": "[u8; 33]",
         "Wallet": {
           "addresses": "BTreeSet<BtcAddress>",
-          "address": "BtcAddress"
+          "public_key": "BtcPublicKey"
         },
         "Vault": {
           "id": "AccountId",
@@ -80,15 +92,23 @@
           "btc_block_hash": "Option<H256Le>",
           "proposer": "AccountId",
           "deposit": "DOT",
-          "tally": "Tally<AccountId>",
+          "tally": "Tally",
           "message": "Text"
         },
         "Tally": {
-          "aye": "BTreeSet<AccountId>",
-          "nay": "BTreeSet<AccountId>"
+          "aye": "Votes",
+          "nay": "Votes"
+        },
+        "Votes": {
+          "accounts": "BTreeSet<AccountId>",
+          "total_stake": "Balance"
         },
         "ProposalStatus": {
-          "_enum": ["Pending", "Accepted", "Rejected", "Expired"]
+          "_enum": [
+            "Pending",
+            "Accepted",
+            "Rejected"
+          ]
         },
         "StakedRelayer": {
           "stake": "DOT",
@@ -150,7 +170,6 @@
           "hour": "u32"
         },
         "Version": "u32",
-
         "AccountIdJsonRpcResponse": {
           "account_id": "String"
         },
@@ -185,13 +204,10 @@
           "account_id": "AccountId"
         },
         "RegisterVaultJsonRpcResponse": {
-          "address": "BtcAddress"
+          "public_key": "BtcPublicKey"
         },
         "ChangeCollateralJsonRpcRequest": {
           "amount": "u128"
-        },
-        "UpdateBtcAddressJsonRpcResponse": {
-          "address": "BtcAddress"
         },
         "WithdrawReplaceJsonRpcRequest": {
           "replace_id": "H256"
