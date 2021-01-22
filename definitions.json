@@ -433,6 +433,16 @@
         ],
         "type": "Vec<(H256, RefundRequest)>"
       },
+      "getRefundRequestsByIssueId": {
+        "description": "Get all refund requests for a particular issue ID",
+        "params": [
+          {
+            "name": "issue_id",
+            "type": "H256"
+          }
+        ],
+        "type": "Vec<(H256, RefundRequest)>"
+      },
       "getVaultRefundRequests": {
         "description": "Get all refund requests for a particular vault",
         "params": [
