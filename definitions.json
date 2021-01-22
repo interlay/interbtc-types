@@ -441,7 +441,7 @@
             "type": "H256"
           }
         ],
-        "type": "Vec<(H256, RefundRequest)>"
+        "type": "(H256, RefundRequest)"
       },
       "getVaultRefundRequests": {
         "description": "Get all refund requests for a particular vault",
