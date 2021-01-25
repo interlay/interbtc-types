@@ -456,6 +456,6 @@
     }
   },
   "instances": {
-    "balances": ["DOT", "PolkaBtc"]
+    "balances": ["dot", "polkaBtc"]
   }
 }
