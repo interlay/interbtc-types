@@ -454,5 +454,8 @@
         "type": "Vec<(H256, RefundRequest)>"
       }
     }
+  },
+  "instances": {
+    "balances": ["DOT", "PolkaBtc"]
   }
 }
