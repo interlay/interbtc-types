@@ -1,461 +1,657 @@
 {
-  "types": [
-    {
-      "minmax": [
-        0,
-        2
-      ],
-      "types": {
-        "H256Le": "H256",
-        "DOT": "u128",
-        "PolkaBTC": "Balance",
-        "BTCBalance": "u128",
-        "StatusCode": {
-          "_enum": [
-            "Running",
-            "Error",
-            "Shutdown"
-          ]
-        },
-        "Address": "AccountId",
-        "LookupSource": "AccountId",
-        "Status": "StatusCode",
-        "ErrorCode": {
-          "_enum": [
-            "None",
-            "NoDataBTCRelay",
-            "InvalidBTCRelay",
-            "OracleOffline",
-            "Liquidation"
-          ]
-        },
-        "VaultStatus": {
-          "_enum": [
-            "Active",
-            "Liquidated",
-            "CommittedTheft"
-          ]
-        },
-        "RawBlockHeader": {
-          "0": "[u8; 80]"
-        },
-        "RichBlockHeader": {
-          "block_hash": "H256Le",
-          "block_header": "BlockHeader",
-          "block_height": "u32",
-          "chain_ref": "u32"
-        },
-        "BlockHeader": {
-          "merkle_root": "H256Le",
-          "target": "U256",
-          "timestamp": "u32",
-          "version": "i32",
-          "hash_prev_block": "H256Le",
-          "nonce": "u32"
-        },
-        "BlockChain": {
-          "chain_id": "u32",
-          "start_height": "u32",
-          "max_height": "u32",
-          "no_data": "BTreeSet<u32>",
-          "invalid": "BTreeSet<u32>"
-        },
-        "BtcAddress": {
-          "_enum": {
-            "P2PKH": "H160",
-            "P2SH": "H160",
-            "P2WPKHv0": "H160"
-          }
-        },
-        "BtcPublicKey": "[u8; 33]",
-        "Wallet": {
-          "addresses": "BTreeSet<BtcAddress>",
-          "public_key": "BtcPublicKey"
-        },
-        "Vault": {
-          "id": "AccountId",
-          "to_be_issued_tokens": "PolkaBTC",
-          "issued_tokens": "PolkaBTC",
-          "to_be_redeemed_tokens": "PolkaBTC",
-          "wallet": "Wallet",
-          "banned_until": "Option<BlockNumber>",
-          "status": "VaultStatus"
-        },
-        "StatusUpdate": {
-          "new_status_code": "StatusCode",
-          "old_status_code": "StatusCode",
-          "add_error": "Option<ErrorCode>",
-          "remove_error": "Option<ErrorCode>",
-          "start": "BlockNumber",
-          "end": "BlockNumber",
-          "proposal_status": "ProposalStatus",
-          "btc_block_hash": "Option<H256Le>",
-          "proposer": "AccountId",
-          "deposit": "DOT",
-          "tally": "Tally",
-          "message": "Text"
-        },
-        "Tally": {
-          "aye": "Votes",
-          "nay": "Votes"
-        },
-        "Votes": {
-          "accounts": "BTreeSet<AccountId>",
-          "total_stake": "Balance"
-        },
-        "ProposalStatus": {
-          "_enum": [
-            "Pending",
-            "Accepted",
-            "Rejected"
-          ]
-        },
-        "StakedRelayer": {
-          "stake": "DOT",
-          "height": "BlockNumber"
-        },
-        "IssueRequest": {
-          "vault": "AccountId",
-          "opentime": "BlockNumber",
-          "griefing_collateral": "DOT",
-          "amount": "PolkaBTC",
-          "fee": "PolkaBTC",
-          "requester": "AccountId",
-          "btc_address": "BtcAddress",
-          "completed": "bool",
-          "cancelled": "bool"
-        },
-        "RedeemRequest": {
-          "vault": "AccountId",
-          "opentime": "BlockNumber",
-          "amount_polka_btc": "PolkaBTC",
-          "fee": "PolkaBTC",
-          "amount_btc": "PolkaBTC",
-          "amount_dot": "DOT",
-          "premium_dot": "DOT",
-          "redeemer": "AccountId",
-          "btc_address": "BtcAddress",
-          "completed": "bool",
-          "cancelled": "bool",
-          "reimburse": "bool"
-        },
-        "ReplaceRequest": {
-          "old_vault": "AccountId",
-          "open_time": "BlockNumber",
-          "amount": "PolkaBTC",
-          "griefing_collateral": "DOT",
-          "new_vault": "Option<AccountId>",
-          "collateral": "DOT",
-          "accept_time": "Option<BlockNumber>",
-          "btc_address": "BtcAddress",
-          "completed": "bool",
-          "cancelled": "bool"
-        },
-        "RefundRequest": {
-          "vault": "AccountId",
-          "amount_polka_btc": "PolkaBTC",
-          "fee": "PolkaBTC",
-          "amount_btc": "PolkaBTC",
-          "issuer": "AccountId",
-          "btc_address": "BtcAddress",
-          "issue_id": "H256",
-          "completed": "bool"
-        },
-        "BalanceWrapper": {
-          "amount": "String"
-        },
-        "BtcTxFeesPerByte": {
-          "fast": "u32",
-          "half": "u32",
-          "hour": "u32"
-        },
-        "Version": "u32",
-        "AccountIdJsonRpcResponse": {
-          "account_id": "String"
-        },
-        "RegisterStakedRelayerJsonRpcRequest": {
-          "stake": "u128"
-        },
-        "SuggestStatusUpdateJsonRpcRequest": {
-          "deposit": "u128",
-          "status_code": "StatusCode",
-          "add_error": "Option<ErrorCode>",
-          "remove_error": "Option<ErrorCode>",
-          "block_hash": "Option<H256Le>",
-          "message": "String"
-        },
-        "SystemVault": {
-          "id": "AccountId",
-          "to_be_issued_tokens": "PolkaBTC",
-          "issued_tokens": "PolkaBTC",
-          "to_be_redeemed_tokens": "PolkaBTC"
-        },
-        "VoteOnStatusUpdateJsonRpcRequest": {
-          "status_update_id": "U256",
-          "approve": "bool"
-        },
-        "ReplaceRequestJsonRpcRequest": {
-          "amount": "u128"
-        },
-        "RegisterVaultJsonRpcRequest": {
-          "collateral": "u128"
-        },
-        "FundAccountJsonRpcRequest": {
-          "account_id": "AccountId"
-        },
-        "RegisterVaultJsonRpcResponse": {
-          "public_key": "BtcPublicKey"
-        },
-        "ChangeCollateralJsonRpcRequest": {
-          "amount": "u128"
-        },
-        "WithdrawReplaceJsonRpcRequest": {
-          "replace_id": "H256"
-        },
-        "FixedPoint": "FixedI128",
-        "SignedFixedPoint": "FixedI128",
-        "UnsignedFixedPoint": "FixedU128"
-      }
-    }
-  ],
-  "rpc": {
-    "vaultRegistry": {
-      "getFirstVaultWithSufficientCollateral": {
-        "description": "Get the first available vault with sufficient collateral to fulfil an issue request with the specified amount of PolkaBTC.",
-        "params": [
-          {
-            "name": "amount",
-            "type": "BalanceWrapper"
-          }
-        ],
-        "type": "AccountId"
-      },
-      "getFirstVaultWithSufficientTokens": {
-        "description": "Get the first available vault with sufficient tokens to fulfil an redeem request with the specified amount of PolkaBTC.",
-        "params": [
-          {
-            "name": "amount",
-            "type": "BalanceWrapper"
-          }
-        ],
-        "type": "AccountId"
-      },
-      "getIssueableTokensFromVault": {
-        "description": "Get the amount of tokens a vault can issue",
-        "params": [
-          {
-            "name": "vault",
+    "types": [
+        {
+            "minmax": [0, 2],
+            "types": {
+                "H256Le": "H256",
+                "DOT": "u128",
+                "PolkaBTC": "Balance",
+                "BTCBalance": "u128",
+                "StatusCode": {
+                    "_enum": ["Running", "Error", "Shutdown"]
+                },
+                "Address": "AccountId",
+                "LookupSource": "AccountId",
+                "Status": "StatusCode",
+                "ErrorCode": {
+                    "_enum": [
+                        "None",
+                        "NoDataBTCRelay",
+                        "InvalidBTCRelay",
+                        "OracleOffline",
+                        "Liquidation"
+                    ]
+                },
+                "VaultStatus": {
+                    "_enum": ["Active", "Liquidated", "CommittedTheft"]
+                },
+                "RawBlockHeader": {
+                    "0": "[u8; 80]"
+                },
+                "RichBlockHeader": {
+                    "block_hash": "H256Le",
+                    "block_header": "BlockHeader",
+                    "block_height": "u32",
+                    "chain_ref": "u32"
+                },
+                "BlockHeader": {
+                    "merkle_root": "H256Le",
+                    "target": "U256",
+                    "timestamp": "u32",
+                    "version": "i32",
+                    "hash_prev_block": "H256Le",
+                    "nonce": "u32"
+                },
+                "BlockChain": {
+                    "chain_id": "u32",
+                    "start_height": "u32",
+                    "max_height": "u32",
+                    "no_data": "BTreeSet<u32>",
+                    "invalid": "BTreeSet<u32>"
+                },
+                "BtcAddress": {
+                    "_enum": {
+                        "P2PKH": "H160",
+                        "P2SH": "H160",
+                        "P2WPKHv0": "H160"
+                    }
+                },
+                "BtcPublicKey": "[u8; 33]",
+                "Wallet": {
+                    "addresses": "BTreeSet<BtcAddress>",
+                    "public_key": "BtcPublicKey"
+                },
+                "Vault": {
+                    "id": "AccountId",
+                    "to_be_issued_tokens": "PolkaBTC",
+                    "issued_tokens": "PolkaBTC",
+                    "to_be_redeemed_tokens": "PolkaBTC",
+                    "wallet": "Wallet",
+                    "banned_until": "Option<BlockNumber>",
+                    "status": "VaultStatus"
+                },
+                "StatusUpdate": {
+                    "new_status_code": "StatusCode",
+                    "old_status_code": "StatusCode",
+                    "add_error": "Option<ErrorCode>",
+                    "remove_error": "Option<ErrorCode>",
+                    "start": "BlockNumber",
+                    "end": "BlockNumber",
+                    "proposal_status": "ProposalStatus",
+                    "btc_block_hash": "Option<H256Le>",
+                    "proposer": "AccountId",
+                    "deposit": "DOT",
+                    "tally": "Tally",
+                    "message": "Text"
+                },
+                "Tally": {
+                    "aye": "Votes",
+                    "nay": "Votes"
+                },
+                "Votes": {
+                    "accounts": "BTreeSet<AccountId>",
+                    "total_stake": "Balance"
+                },
+                "ProposalStatus": {
+                    "_enum": ["Pending", "Accepted", "Rejected"]
+                },
+                "StakedRelayer": {
+                    "stake": "DOT",
+                    "height": "BlockNumber"
+                },
+                "IssueRequest": {
+                    "vault": "AccountId",
+                    "opentime": "BlockNumber",
+                    "griefing_collateral": "DOT",
+                    "amount": "PolkaBTC",
+                    "fee": "PolkaBTC",
+                    "requester": "AccountId",
+                    "btc_address": "BtcAddress",
+                    "completed": "bool",
+                    "cancelled": "bool"
+                },
+                "RedeemRequest": {
+                    "vault": "AccountId",
+                    "opentime": "BlockNumber",
+                    "amount_polka_btc": "PolkaBTC",
+                    "fee": "PolkaBTC",
+                    "amount_btc": "PolkaBTC",
+                    "amount_dot": "DOT",
+                    "premium_dot": "DOT",
+                    "redeemer": "AccountId",
+                    "btc_address": "BtcAddress",
+                    "completed": "bool",
+                    "cancelled": "bool",
+                    "reimburse": "bool"
+                },
+                "ReplaceRequest": {
+                    "old_vault": "AccountId",
+                    "open_time": "BlockNumber",
+                    "amount": "PolkaBTC",
+                    "griefing_collateral": "DOT",
+                    "new_vault": "Option<AccountId>",
+                    "collateral": "DOT",
+                    "accept_time": "Option<BlockNumber>",
+                    "btc_address": "BtcAddress",
+                    "completed": "bool",
+                    "cancelled": "bool"
+                },
+                "RefundRequest": {
+                    "vault": "AccountId",
+                    "amount_polka_btc": "PolkaBTC",
+                    "fee": "PolkaBTC",
+                    "amount_btc": "PolkaBTC",
+                    "issuer": "AccountId",
+                    "btc_address": "BtcAddress",
+                    "issue_id": "H256",
+                    "completed": "bool"
+                },
+                "BalanceWrapper": {
+                    "amount": "String"
+                },
+                "BtcTxFeesPerByte": {
+                    "fast": "u32",
+                    "half": "u32",
+                    "hour": "u32"
+                },
+                "Version": "u32",
+                "AccountIdJsonRpcResponse": {
+                    "account_id": "String"
+                },
+                "RegisterStakedRelayerJsonRpcRequest": {
+                    "stake": "u128"
+                },
+                "SuggestStatusUpdateJsonRpcRequest": {
+                    "deposit": "u128",
+                    "status_code": "StatusCode",
+                    "add_error": "Option<ErrorCode>",
+                    "remove_error": "Option<ErrorCode>",
+                    "block_hash": "Option<H256Le>",
+                    "message": "String"
+                },
+                "SystemVault": {
+                    "id": "AccountId",
+                    "to_be_issued_tokens": "PolkaBTC",
+                    "issued_tokens": "PolkaBTC",
+                    "to_be_redeemed_tokens": "PolkaBTC"
+                },
+                "VoteOnStatusUpdateJsonRpcRequest": {
+                    "status_update_id": "U256",
+                    "approve": "bool"
+                },
+                "ReplaceRequestJsonRpcRequest": {
+                    "amount": "u128"
+                },
+                "RegisterVaultJsonRpcRequest": {
+                    "collateral": "u128"
+                },
+                "FundAccountJsonRpcRequest": {
+                    "account_id": "AccountId"
+                },
+                "RegisterVaultJsonRpcResponse": {
+                    "public_key": "BtcPublicKey"
+                },
+                "ChangeCollateralJsonRpcRequest": {
+                    "amount": "u128"
+                },
+                "WithdrawReplaceJsonRpcRequest": {
+                    "replace_id": "H256"
+                },
+                "FixedPoint": "FixedI128",
+                "SignedFixedPoint": "FixedI128",
+                "UnsignedFixedPoint": "FixedU128"
+            }
+        }
+    ],
+    "rpc": {
+        "getFirstVaultWithSufficientCollateral": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get the first available vault with sufficient collateral to fulfil an issue request with the specified amount of PolkaBTC.",
+            "params": [
+                {
+                    "name": "amount",
+                    "type": "BalanceWrapper"
+                }
+            ],
             "type": "AccountId"
-          }
-        ],
-        "type": "BalanceWrapper"
-      },
-      "getCollateralizationFromVault": {
-        "description": "Returns the collateralization of a specific vault",
-        "params": [
-          {
-            "name": "vault_id",
+        },
+        "getFirstVaultWithSufficientTokens": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get the first available vault with sufficient tokens to fulfil an redeem request with the specified amount of PolkaBTC.",
+            "params": [
+                {
+                    "name": "amount",
+                    "type": "BalanceWrapper"
+                }
+            ],
             "type": "AccountId"
-          },
-          {
-            "name": "only_issued",
+        },
+        "getIssueableTokensFromVault": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get the amount of tokens a vault can issue",
+            "params": [
+                {
+                    "name": "vault",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "BalanceWrapper"
+        },
+        "getCollateralizationFromVault": {
+            "aliasSection": "vaultRegistry",
+            "description": "Returns the collateralization of a specific vault",
+            "params": [
+                {
+                    "name": "vault_id",
+                    "type": "AccountId"
+                },
+                {
+                    "name": "only_issued",
+                    "type": "bool"
+                }
+            ],
+            "type": "UnsignedFixedPoint"
+        },
+        "getCollateralizationFromVaultAndCollateral": {
+            "aliasSection": "vaultRegistry",
+            "description": "Returns the collateralization of a specific vault and collateral",
+            "params": [
+                {
+                    "name": "vault_id",
+                    "type": "AccountId"
+                },
+                {
+                    "name": "collateral",
+                    "type": "BalanceWrapper"
+                },
+                {
+                    "name": "only_issued",
+                    "type": "bool"
+                }
+            ],
+            "type": "UnsignedFixedPoint"
+        },
+        "getTotalCollateralization": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get the total collateralization of the system",
+            "params": [],
+            "type": "UnsignedFixedPoint"
+        },
+        "getRequiredCollateralForPolkabtc": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get the amount of collateral required to issue an amount of PolkaBTC",
+            "params": [
+                {
+                    "name": "amount_btc",
+                    "type": "BalanceWrapper"
+                }
+            ],
+            "type": "BalanceWrapper"
+        },
+        "getRequiredCollateralForVault": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get the amount of collateral required for the given vault to be at the current SecureCollateralThreshold with the current exchange rate",
+            "params": [
+                {
+                    "name": "vault_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "BalanceWrapper"
+        },
+        "isVaultBelowAuctionThreshold": {
+            "aliasSection": "vaultRegistry",
+            "description": "Check if the identified vault is below the auction threshold",
+            "params": [
+                {
+                    "name": "vault_id",
+                    "type": "AccountId"
+                }
+            ],
             "type": "bool"
-          }
-        ],
-        "type": "UnsignedFixedPoint"
-      },
-      "getCollateralizationFromVaultAndCollateral": {
-        "description": "Returns the collateralization of a specific vault and collateral",
-        "params": [
-          {
-            "name": "vault_id",
-            "type": "AccountId"
-          },
-          {
-            "name": "collateral",
+        },
+        "btcToDots": {
+            "aliasSection": "exchangeRateOracle",
+            "description": "BTC to DOT conversion rate",
+            "params": [
+                {
+                    "name": "amount",
+                    "type": "BalanceWrapper"
+                }
+            ],
             "type": "BalanceWrapper"
-          },
-          {
-            "name": "only_issued",
-            "type": "bool"
-          }
-        ],
-        "type": "UnsignedFixedPoint"
-      },
-      "getTotalCollateralization": {
-        "description": "Get the total collateralization of the system",
-        "params": [],
-        "type": "UnsignedFixedPoint"
-      },
-      "getRequiredCollateralForPolkabtc": {
-        "description": "Get the amount of collateral required to issue an amount of PolkaBTC",
-        "params": [
-          {
-            "name": "amount_btc",
+        },
+        "dotsToBtc": {
+            "aliasSection": "exchangeRateOracle",
+            "description": "DOT to BTC conversion rate",
+            "params": [
+                {
+                    "name": "amount",
+                    "type": "BalanceWrapper"
+                }
+            ],
             "type": "BalanceWrapper"
-          }
-        ],
-        "type": "BalanceWrapper"
-      },
-      "getRequiredCollateralForVault": {
-        "description": "Get the amount of collateral required for the given vault to be at the current SecureCollateralThreshold with the current exchange rate",
-        "params": [
-          {
-            "name": "vault_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "BalanceWrapper"
-      },
-      "isVaultBelowAuctionThreshold": {
-        "description": "Check if the identified vault is below the auction threshold",
-        "params": [
-          {
-            "name": "vault_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "bool"
-      }
+        },
+        "isTransactionInvalid": {
+            "aliasSection": "stakedRelayers",
+            "description": "BTC to DOT conversion rate",
+            "params": [
+                {
+                    "name": "vault_id",
+                    "type": "AccountId"
+                },
+                {
+                    "name": "raw_tx",
+                    "type": "Vec<u8>"
+                }
+            ],
+            "type": "void"
+        },
+        "getIssueRequests": {
+            "aliasSection": "issue",
+            "description": "Get all issue requests for a particular account",
+            "params": [
+                {
+                    "name": "account_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "Vec<(H256, IssueRequest)>"
+        },
+        "getVaultIssueRequests": {
+            "aliasSection": "issue",
+            "description": "Get all issue requests for a particular vault",
+            "params": [
+                {
+                    "name": "vault_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "Vec<(H256, IssueRequest)>"
+        },
+        "getRedeemRequests": {
+            "aliasSection": "redeem",
+            "description": "Get all redeem requests for a particular account",
+            "params": [
+                {
+                    "name": "account_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "Vec<(H256, RedeemRequest)>"
+        },
+        "getVaultRedeemRequests": {
+            "aliasSection": "redeem",
+            "description": "Get all redeem requests for a particular vault",
+            "params": [
+                {
+                    "name": "vault_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "Vec<(H256, RedeemRequest)>"
+        },
+        "getOldVaultReplaceRequests": {
+            "aliasSection": "replace",
+            "description": "Get all replace requests from a particular vault",
+            "params": [
+                {
+                    "name": "account_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "Vec<(H256, ReplaceRequest)>"
+        },
+        "getNewVaultReplaceRequests": {
+            "aliasSection": "replace",
+            "description": "Get all replace requests to a particular vault",
+            "params": [
+                {
+                    "name": "account_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "Vec<(H256, ReplaceRequest)>"
+        }
     },
-    "exchangeRateOracle": {
-      "btcToDots": {
-        "description": "BTC to DOT conversion rate",
-        "params": [
-          {
-            "name": "amount",
-            "type": "BalanceWrapper"
-          }
-        ],
-        "type": "BalanceWrapper"
-      },
-      "dotsToBtc": {
-        "description": "DOT to BTC conversion rate",
-        "params": [
-          {
-            "name": "amount",
-            "type": "BalanceWrapper"
-          }
-        ],
-        "type": "BalanceWrapper"
-      }
+    "providerRpc": {
+        "vaultRegistry": {
+            "getFirstVaultWithSufficientCollateral": {
+                "description": "Get the first available vault with sufficient collateral to fulfil an issue request with the specified amount of PolkaBTC.",
+                "params": [
+                    {
+                        "name": "amount",
+                        "type": "BalanceWrapper"
+                    }
+                ],
+                "type": "AccountId"
+            },
+            "getFirstVaultWithSufficientTokens": {
+                "description": "Get the first available vault with sufficient tokens to fulfil an redeem request with the specified amount of PolkaBTC.",
+                "params": [
+                    {
+                        "name": "amount",
+                        "type": "BalanceWrapper"
+                    }
+                ],
+                "type": "AccountId"
+            },
+            "getIssueableTokensFromVault": {
+                "description": "Get the amount of tokens a vault can issue",
+                "params": [
+                    {
+                        "name": "vault",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "BalanceWrapper"
+            },
+            "getCollateralizationFromVault": {
+                "description": "Returns the collateralization of a specific vault",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "only_issued",
+                        "type": "bool"
+                    }
+                ],
+                "type": "UnsignedFixedPoint"
+            },
+            "getCollateralizationFromVaultAndCollateral": {
+                "description": "Returns the collateralization of a specific vault and collateral",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "collateral",
+                        "type": "BalanceWrapper"
+                    },
+                    {
+                        "name": "only_issued",
+                        "type": "bool"
+                    }
+                ],
+                "type": "UnsignedFixedPoint"
+            },
+            "getTotalCollateralization": {
+                "description": "Get the total collateralization of the system",
+                "params": [],
+                "type": "UnsignedFixedPoint"
+            },
+            "getRequiredCollateralForPolkabtc": {
+                "description": "Get the amount of collateral required to issue an amount of PolkaBTC",
+                "params": [
+                    {
+                        "name": "amount_btc",
+                        "type": "BalanceWrapper"
+                    }
+                ],
+                "type": "BalanceWrapper"
+            },
+            "getRequiredCollateralForVault": {
+                "description": "Get the amount of collateral required for the given vault to be at the current SecureCollateralThreshold with the current exchange rate",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "BalanceWrapper"
+            },
+            "isVaultBelowAuctionThreshold": {
+                "description": "Check if the identified vault is below the auction threshold",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "bool"
+            }
+        },
+        "exchangeRateOracle": {
+            "btcToDots": {
+                "description": "BTC to DOT conversion rate",
+                "params": [
+                    {
+                        "name": "amount",
+                        "type": "BalanceWrapper"
+                    }
+                ],
+                "type": "BalanceWrapper"
+            },
+            "dotsToBtc": {
+                "description": "DOT to BTC conversion rate",
+                "params": [
+                    {
+                        "name": "amount",
+                        "type": "BalanceWrapper"
+                    }
+                ],
+                "type": "BalanceWrapper"
+            }
+        },
+        "stakedRelayers": {
+            "isTransactionInvalid": {
+                "description": "BTC to DOT conversion rate",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "raw_tx",
+                        "type": "Vec<u8>"
+                    }
+                ],
+                "type": ""
+            }
+        },
+        "issue": {
+            "getIssueRequests": {
+                "description": "Get all issue requests for a particular account",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, IssueRequest)>"
+            },
+            "getVaultIssueRequests": {
+                "description": "Get all issue requests for a particular vault",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, IssueRequest)>"
+            }
+        },
+        "redeem": {
+            "getRedeemRequests": {
+                "description": "Get all redeem requests for a particular account",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, RedeemRequest)>"
+            },
+            "getVaultRedeemRequests": {
+                "description": "Get all redeem requests for a particular vault",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, RedeemRequest)>"
+            }
+        },
+        "replace": {
+            "getOldVaultReplaceRequests": {
+                "description": "Get all replace requests from a particular vault",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, ReplaceRequest)>"
+            },
+            "getNewVaultReplaceRequests": {
+                "description": "Get all replace requests to a particular vault",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, ReplaceRequest)>"
+            }
+        },
+        "refund": {
+            "getRefundRequests": {
+                "description": "Get all refund requests for a particular account",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, RefundRequest)>"
+            },
+            "getRefundRequestsByIssueId": {
+                "description": "Get all refund requests for a particular issue ID",
+                "params": [
+                    {
+                        "name": "issue_id",
+                        "type": "H256"
+                    }
+                ],
+                "type": "(H256, RefundRequest)"
+            },
+            "getVaultRefundRequests": {
+                "description": "Get all refund requests for a particular vault",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<(H256, RefundRequest)>"
+            }
+        }
     },
-    "stakedRelayers": {
-      "isTransactionInvalid": {
-        "description": "BTC to DOT conversion rate",
-        "params": [
-          {
-            "name": "vault_id",
-            "type": "AccountId"
-          },
-          {
-            "name": "raw_tx",
-            "type": "Vec<u8>"
-          }
-        ],
-        "type": ""
-      }
-    },
-    "issue": {
-      "getIssueRequests": {
-        "description": "Get all issue requests for a particular account",
-        "params": [
-          {
-            "name": "account_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "Vec<(H256, IssueRequest)>"
-      },
-      "getVaultIssueRequests": {
-        "description": "Get all issue requests for a particular vault",
-        "params": [
-          {
-            "name": "vault_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "Vec<(H256, IssueRequest)>"
-      }
-    },
-    "redeem": {
-      "getRedeemRequests": {
-        "description": "Get all redeem requests for a particular account",
-        "params": [
-          {
-            "name": "account_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "Vec<(H256, RedeemRequest)>"
-      },
-      "getVaultRedeemRequests": {
-        "description": "Get all redeem requests for a particular vault",
-        "params": [
-          {
-            "name": "vault_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "Vec<(H256, RedeemRequest)>"
-      }
-    },
-    "replace": {
-      "getOldVaultReplaceRequests": {
-        "description": "Get all replace requests from a particular vault",
-        "params": [
-          {
-            "name": "account_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "Vec<(H256, ReplaceRequest)>"
-      },
-      "getNewVaultReplaceRequests": {
-        "description": "Get all replace requests to a particular vault",
-        "params": [
-          {
-            "name": "account_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "Vec<(H256, ReplaceRequest)>"
-      }
-    },
-    "refund": {
-      "getRefundRequests": {
-        "description": "Get all refund requests for a particular account",
-        "params": [
-          {
-            "name": "account_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "Vec<(H256, RefundRequest)>"
-      },
-      "getRefundRequestsByIssueId": {
-        "description": "Get all refund requests for a particular issue ID",
-        "params": [
-          {
-            "name": "issue_id",
-            "type": "H256"
-          }
-        ],
-        "type": "(H256, RefundRequest)"
-      },
-      "getVaultRefundRequests": {
-        "description": "Get all refund requests for a particular vault",
-        "params": [
-          {
-            "name": "account_id",
-            "type": "AccountId"
-          }
-        ],
-        "type": "Vec<(H256, RefundRequest)>"
-      }
+    "instances": {
+        "balances": ["dot", "polkaBtc"]
     }
-  },
-  "instances": {
-    "balances": ["dot", "polkaBtc"]
-  }
 }
