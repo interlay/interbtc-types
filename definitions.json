@@ -199,7 +199,8 @@
                 },
                 "FixedPoint": "FixedI128",
                 "SignedFixedPoint": "FixedI128",
-                "UnsignedFixedPoint": "FixedU128"
+                "UnsignedFixedPoint": "FixedU128",
+                "StatusUpdateId": "u64"
             }
         }
     ],
