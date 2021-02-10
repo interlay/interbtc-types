@@ -439,6 +439,7 @@
             },
             "getPremiumRedeemVaults": {
                 "description": "Get all vaults below the premium redeem threshold.",
+                "params": [],
                 "type": "Vec<(H256, BalanceWrapper)>"
             },
             "getIssueableTokensFromVault": {
