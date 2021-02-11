@@ -132,7 +132,7 @@
                     "new_vault": "Option<AccountId>",
                     "collateral": "DOT",
                     "accept_time": "Option<BlockNumber>",
-                    "btc_address": "BtcAddress",
+                    "btc_address": "Option<BtcAddress>",
                     "completed": "bool",
                     "cancelled": "bool"
                 },
@@ -226,6 +226,12 @@
                 }
             ],
             "type": "AccountId"
+        },
+        "getPremiumRedeemVaults": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get all vaults below the premium redeem threshold.",
+            "params": [],
+            "type": "Vec<(H256, BalanceWrapper)>"
         },
         "getIssueableTokensFromVault": {
             "aliasSection": "vaultRegistry",
