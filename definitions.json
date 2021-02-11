@@ -227,6 +227,12 @@
             ],
             "type": "AccountId"
         },
+        "getPremiumRedeemVaults": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get all vaults below the premium redeem threshold.",
+            "params": [],
+            "type": "Vec<(H256, BalanceWrapper)>"
+        },
         "getIssueableTokensFromVault": {
             "aliasSection": "vaultRegistry",
             "description": "Get the amount of tokens a vault can issue",
