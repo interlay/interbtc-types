@@ -245,7 +245,13 @@
         },
         "getPremiumRedeemVaults": {
             "aliasSection": "vaultRegistry",
-            "description": "Get all vaults below the premium redeem threshold.",
+            "description": "Get all vaults below the premium redeem threshold, ordered in descending order of the redeemable tokens",
+            "params": [],
+            "type": "Vec<(AccountId, BalanceWrapper)>"
+        },
+        "getVaultsWithIssuableTokens": {
+            "aliasSection": "vaultRegistry",
+            "description": "Get all vaults with non-zero issuable tokens, ordered in descending order of this amount",
             "params": [],
             "type": "Vec<(AccountId, BalanceWrapper)>"
         },
@@ -461,6 +467,11 @@
             },
             "getPremiumRedeemVaults": {
                 "description": "Get all vaults below the premium redeem threshold.",
+                "params": [],
+                "type": "Vec<(AccountId, BalanceWrapper)>"
+            },
+            "getVaultsWithIssuableTokens": {
+                "description": "Get all vaults with non-zero issuable tokens, ordered in descending order of this amount",
                 "params": [],
                 "type": "Vec<(AccountId, BalanceWrapper)>"
             },
