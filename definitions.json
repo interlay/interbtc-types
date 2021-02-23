@@ -1,21 +1,14 @@
 {
     "types": [
         {
-            "minmax": [
-                0,
-                2
-            ],
+            "minmax": [0, 2],
             "types": {
                 "H256Le": "H256",
                 "DOT": "u128",
                 "PolkaBTC": "Balance",
                 "BTCBalance": "u128",
                 "StatusCode": {
-                    "_enum": [
-                        "Running",
-                        "Error",
-                        "Shutdown"
-                    ]
+                    "_enum": ["Running", "Error", "Shutdown"]
                 },
                 "Address": "AccountId",
                 "LookupSource": "AccountId",
@@ -30,11 +23,7 @@
                     ]
                 },
                 "VaultStatus": {
-                    "_enum": [
-                        "Active",
-                        "Liquidated",
-                        "CommittedTheft"
-                    ]
+                    "_enum": ["Active", "Liquidated", "CommittedTheft"]
                 },
                 "RawBlockHeader": {
                     "0": "[u8; 80]"
@@ -104,11 +93,7 @@
                     "total_stake": "Balance"
                 },
                 "ProposalStatus": {
-                    "_enum": [
-                        "Pending",
-                        "Accepted",
-                        "Rejected"
-                    ]
+                    "_enum": ["Pending", "Accepted", "Rejected"]
                 },
                 "StakedRelayer": {
                     "stake": "DOT",
@@ -441,6 +426,39 @@
                 }
             ],
             "type": "Vec<(H256, ReplaceRequest)>"
+        },
+        "getRefundRequests": {
+            "aliasSection": "refund",
+            "description": "Get all refund requests for a particular account",
+            "params": [
+                {
+                    "name": "account_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "Vec<(H256, RefundRequest)>"
+        },
+        "getRefundRequestsByIssueId": {
+            "aliasSection": "refund",
+            "description": "Get all refund requests for a particular issue ID",
+            "params": [
+                {
+                    "name": "issue_id",
+                    "type": "H256"
+                }
+            ],
+            "type": "(H256, RefundRequest)"
+        },
+        "getVaultRefundRequests": {
+            "aliasSection": "refund",
+            "description": "Get all refund requests for a particular vault",
+            "params": [
+                {
+                    "name": "account_id",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "Vec<(H256, RefundRequest)>"
         }
     },
     "providerRpc": {
@@ -691,9 +709,6 @@
         }
     },
     "instances": {
-        "balances": [
-            "dot",
-            "polkaBtc"
-        ]
+        "balances": ["dot", "polkaBtc"]
     }
 }
