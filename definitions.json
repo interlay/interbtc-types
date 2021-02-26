@@ -1,14 +1,21 @@
 {
     "types": [
         {
-            "minmax": [0, 2],
+            "minmax": [
+                0,
+                2
+            ],
             "types": {
                 "H256Le": "H256",
                 "DOT": "u128",
                 "PolkaBTC": "Balance",
                 "BTCBalance": "u128",
                 "StatusCode": {
-                    "_enum": ["Running", "Error", "Shutdown"]
+                    "_enum": [
+                        "Running",
+                        "Error",
+                        "Shutdown"
+                    ]
                 },
                 "Address": "AccountId",
                 "LookupSource": "AccountId",
@@ -23,7 +30,11 @@
                     ]
                 },
                 "VaultStatus": {
-                    "_enum": ["Active", "Liquidated", "CommittedTheft"]
+                    "_enum": [
+                        "Active",
+                        "Liquidated",
+                        "CommittedTheft"
+                    ]
                 },
                 "RawBlockHeader": {
                     "0": "[u8; 80]"
@@ -32,7 +43,8 @@
                     "block_hash": "H256Le",
                     "block_header": "BlockHeader",
                     "block_height": "u32",
-                    "chain_ref": "u32"
+                    "chain_ref": "u32",
+                    "account_id": "AccountId"
                 },
                 "BlockHeader": {
                     "merkle_root": "H256Le",
@@ -67,6 +79,7 @@
                     "issued_tokens": "PolkaBTC",
                     "to_be_redeemed_tokens": "PolkaBTC",
                     "wallet": "Wallet",
+                    "backing_collateral": "DOT",
                     "banned_until": "Option<BlockNumber>",
                     "status": "VaultStatus"
                 },
@@ -93,7 +106,11 @@
                     "total_stake": "Balance"
                 },
                 "ProposalStatus": {
-                    "_enum": ["Pending", "Accepted", "Rejected"]
+                    "_enum": [
+                        "Pending",
+                        "Accepted",
+                        "Rejected"
+                    ]
                 },
                 "StakedRelayer": {
                     "stake": "DOT",
@@ -453,6 +470,9 @@
         }
     },
     "instances": {
-        "balances": ["dot", "polkaBtc"]
+        "balances": [
+            "dot",
+            "polkaBtc"
+        ]
     }
 }
