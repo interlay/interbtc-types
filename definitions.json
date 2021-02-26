@@ -75,6 +75,7 @@
                 },
                 "Vault": {
                     "id": "AccountId",
+                    "to_be_replaced_tokens": "PolkaBTC",
                     "to_be_issued_tokens": "PolkaBTC",
                     "issued_tokens": "PolkaBTC",
                     "to_be_redeemed_tokens": "PolkaBTC",
