@@ -36,6 +36,20 @@
                         "CommittedTheft"
                     ]
                 },
+                "RelayerEvent": {
+                    "_enum": [
+                        "BlockSubmission",
+                        "DuplicateBlockSubmission",
+                        "CorrectNoDataVoteOrReport",
+                        "CorrectInvalidVoteOrReport",
+                        "CorrectLiquidationReport",
+                        "CorrectTheftReport",
+                        "CorrectOracleOfflineReport",
+                        "FalseNoDataVoteOrReport",
+                        "FalseInvalidVoteOrReport",
+                        "IgnoredVote"
+                    ]
+                },
                 "RawBlockHeader": {
                     "0": "[u8; 80]"
                 },
@@ -353,6 +367,26 @@
                     }
                 ],
                 "type": "BalanceWrapper"
+            }
+        },
+        "sla": {
+            "calculateSlashedAmount": {
+                "description": "Amount that is slashed when the the vault fails to execute.",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "stake",
+                        "type": "BalanceWrapper"
+                    },
+                    {
+                        "name": "at",
+                        "type": "Option<BlockHash>"
+                    }
+                ],
+                "type": "void"
             }
         },
         "stakedRelayers": {
