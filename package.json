@@ -1,6 +1,6 @@
 {
     "name": "@interlay/polkabtc-types",
-    "version": "0.5.4",
+    "version": "0.6.0",
     "description": "Substrate types used in PolkaBTC parachain",
     "main": "build/index.js",
     "typings": "index.d.ts",
