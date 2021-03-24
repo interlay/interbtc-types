@@ -25,8 +25,7 @@
                         "None",
                         "NoDataBTCRelay",
                         "InvalidBTCRelay",
-                        "OracleOffline",
-                        "Liquidation"
+                        "OracleOffline"
                     ]
                 },
                 "VaultStatus": {
@@ -42,9 +41,7 @@
                         "DuplicateBlockSubmission",
                         "CorrectNoDataVoteOrReport",
                         "CorrectInvalidVoteOrReport",
-                        "CorrectLiquidationReport",
                         "CorrectTheftReport",
-                        "CorrectOracleOfflineReport",
                         "FalseNoDataVoteOrReport",
                         "FalseInvalidVoteOrReport",
                         "IgnoredVote"
@@ -58,7 +55,8 @@
                     "block_header": "BlockHeader",
                     "block_height": "u32",
                     "chain_ref": "u32",
-                    "account_id": "AccountId"
+                    "account_id": "AccountId",
+                    "para_height": "BlockNumber"
                 },
                 "BlockHeader": {
                     "merkle_root": "H256Le",
@@ -140,8 +138,14 @@
                     "requester": "AccountId",
                     "btc_address": "BtcAddress",
                     "btc_public_key": "BtcPublicKey",
-                    "completed": "bool",
-                    "cancelled": "bool"
+                    "status": "IssueRequestStatus"
+                },
+                "IssueRequestStatus": {
+                    "_enum": {
+                        "Pending": null,
+                        "Completed": "Option<H256>",
+                        "Cancelled": null
+                    }
                 },
                 "RedeemRequest": {
                     "vault": "AccountId",
@@ -153,9 +157,15 @@
                     "premium_dot": "DOT",
                     "redeemer": "AccountId",
                     "btc_address": "BtcAddress",
-                    "completed": "bool",
-                    "cancelled": "bool",
-                    "reimburse": "bool"
+                    "status": "RedeemRequestStatus"
+                },
+                "RedeemRequestStatus": {
+                    "_enum": {
+                        "Pending": null,
+                        "Completed": null,
+                        "Reimbursed": "bool",
+                        "Retried": null
+                    }
                 },
                 "ReplaceRequest": {
                     "old_vault": "AccountId",
@@ -191,44 +201,11 @@
                 "AccountIdJsonRpcResponse": {
                     "account_id": "String"
                 },
-                "RegisterStakedRelayerJsonRpcRequest": {
-                    "stake": "u128"
-                },
-                "SuggestStatusUpdateJsonRpcRequest": {
-                    "deposit": "u128",
-                    "status_code": "StatusCode",
-                    "add_error": "Option<ErrorCode>",
-                    "remove_error": "Option<ErrorCode>",
-                    "block_hash": "Option<H256Le>",
-                    "message": "String"
-                },
                 "SystemVault": {
                     "id": "AccountId",
                     "to_be_issued_tokens": "PolkaBTC",
                     "issued_tokens": "PolkaBTC",
                     "to_be_redeemed_tokens": "PolkaBTC"
-                },
-                "VoteOnStatusUpdateJsonRpcRequest": {
-                    "status_update_id": "U256",
-                    "approve": "bool"
-                },
-                "ReplaceRequestJsonRpcRequest": {
-                    "amount": "u128"
-                },
-                "RegisterVaultJsonRpcRequest": {
-                    "collateral": "u128"
-                },
-                "FundAccountJsonRpcRequest": {
-                    "account_id": "AccountId"
-                },
-                "RegisterVaultJsonRpcResponse": {
-                    "public_key": "BtcPublicKey"
-                },
-                "ChangeCollateralJsonRpcRequest": {
-                    "amount": "u128"
-                },
-                "WithdrawReplaceJsonRpcRequest": {
-                    "replace_id": "H256"
                 },
                 "FixedPoint": "FixedI128",
                 "SignedFixedPoint": "FixedI128",
