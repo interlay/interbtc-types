@@ -87,12 +87,13 @@
                 },
                 "Vault": {
                     "id": "AccountId",
-                    "to_be_replaced_tokens": "PolkaBTC",
                     "to_be_issued_tokens": "PolkaBTC",
                     "issued_tokens": "PolkaBTC",
                     "to_be_redeemed_tokens": "PolkaBTC",
                     "wallet": "Wallet",
                     "backing_collateral": "DOT",
+                    "to_be_replaced_tokens": "PolkaBTC",
+                    "replace_collateral": "DOT",
                     "banned_until": "Option<BlockNumber>",
                     "status": "VaultStatus"
                 },
@@ -169,15 +170,20 @@
                 },
                 "ReplaceRequest": {
                     "old_vault": "AccountId",
-                    "open_time": "BlockNumber",
+                    "new_vault": "AccountId",
                     "amount": "PolkaBTC",
                     "griefing_collateral": "DOT",
-                    "new_vault": "Option<AccountId>",
                     "collateral": "DOT",
-                    "accept_time": "Option<BlockNumber>",
-                    "btc_address": "Option<BtcAddress>",
-                    "completed": "bool",
-                    "cancelled": "bool"
+                    "accept_time": "BlockNumber",
+                    "btc_address": "BtcAddress",
+                    "status": "ReplaceRequestStatus"
+                },
+                "ReplaceRequestStatus": {
+                    "_enum": {
+                        "Pending": null,
+                        "Completed": null,
+                        "Cancelled": null
+                    }
                 },
                 "RefundRequest": {
                     "vault": "AccountId",
