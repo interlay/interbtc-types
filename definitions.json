@@ -150,10 +150,8 @@
                 "RedeemRequest": {
                     "vault": "AccountId",
                     "opentime": "BlockNumber",
-                    "amount_polka_btc": "PolkaBTC",
                     "fee": "PolkaBTC",
                     "amount_btc": "PolkaBTC",
-                    "amount_dot": "DOT",
                     "premium_dot": "DOT",
                     "redeemer": "AccountId",
                     "btc_address": "BtcAddress",
