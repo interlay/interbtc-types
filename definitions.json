@@ -9,7 +9,8 @@
                 "H256Le": "H256",
                 "DOT": "u128",
                 "PolkaBTC": "Balance",
-                "BTCBalance": "u128",
+                "Backing": "Balance",
+                "Issuing": "Balance",
                 "StatusCode": {
                     "_enum": [
                         "Running",
@@ -29,11 +30,11 @@
                     ]
                 },
                 "VaultStatus": {
-                    "_enum": [
-                        "Active",
-                        "Liquidated",
-                        "CommittedTheft"
-                    ]
+                    "_enum": {
+                        "Active": "bool",
+                        "Liquidated": "()",
+                        "CommittedTheft": "()"
+                    }
                 },
                 "RelayerEvent": {
                     "_enum": [
@@ -77,7 +78,8 @@
                     "_enum": {
                         "P2PKH": "H160",
                         "P2SH": "H160",
-                        "P2WPKHv0": "H160"
+                        "P2WPKHv0": "H160",
+                        "P2WSHv0": "H256"
                     }
                 },
                 "BtcPublicKey": "[u8; 33]",
@@ -87,101 +89,85 @@
                 },
                 "Vault": {
                     "id": "AccountId",
-                    "to_be_replaced_tokens": "PolkaBTC",
-                    "to_be_issued_tokens": "PolkaBTC",
-                    "issued_tokens": "PolkaBTC",
-                    "to_be_redeemed_tokens": "PolkaBTC",
+                    "to_be_issued_tokens": "Issuing",
+                    "issued_tokens": "Issuing",
+                    "to_be_redeemed_tokens": "Issuing",
                     "wallet": "Wallet",
-                    "backing_collateral": "DOT",
+                    "backing_collateral": "Backing",
+                    "to_be_replaced_tokens": "Issuing",
+                    "replace_collateral": "Backing",
                     "banned_until": "Option<BlockNumber>",
                     "status": "VaultStatus"
                 },
-                "StatusUpdate": {
-                    "new_status_code": "StatusCode",
-                    "old_status_code": "StatusCode",
-                    "add_error": "Option<ErrorCode>",
-                    "remove_error": "Option<ErrorCode>",
-                    "start": "BlockNumber",
-                    "end": "BlockNumber",
-                    "proposal_status": "ProposalStatus",
-                    "btc_block_hash": "Option<H256Le>",
-                    "proposer": "AccountId",
-                    "deposit": "DOT",
-                    "tally": "Tally",
-                    "message": "Text"
-                },
-                "Tally": {
-                    "aye": "Votes",
-                    "nay": "Votes"
-                },
-                "Votes": {
-                    "accounts": "BTreeSet<AccountId>",
-                    "total_stake": "Balance"
-                },
-                "ProposalStatus": {
-                    "_enum": [
-                        "Pending",
-                        "Accepted",
-                        "Rejected"
-                    ]
-                },
                 "StakedRelayer": {
-                    "stake": "DOT",
+                    "stake": "Balance",
                     "height": "BlockNumber"
+                },
+                "IssueRequestStatus": {
+                    "_enum": {
+                        "Pending": "()",
+                        "Completed": "Option<H256>",
+                        "Cancelled": "()"
+                    }
                 },
                 "IssueRequest": {
                     "vault": "AccountId",
                     "opentime": "BlockNumber",
-                    "griefing_collateral": "DOT",
-                    "amount": "PolkaBTC",
-                    "fee": "PolkaBTC",
+                    "period": "BlockNumber",
+                    "griefing_collateral": "Backing",
+                    "amount": "Issuing",
+                    "fee": "Issuing",
                     "requester": "AccountId",
                     "btc_address": "BtcAddress",
                     "btc_public_key": "BtcPublicKey",
+                    "btc_height": "u32",
                     "status": "IssueRequestStatus"
                 },
-                "IssueRequestStatus": {
+                "RedeemRequestStatus": {
                     "_enum": {
-                        "Pending": null,
-                        "Completed": "Option<H256>",
-                        "Cancelled": null
+                        "Pending": "()",
+                        "Completed": "()",
+                        "Reimbursed": "bool",
+                        "Retried": "()"
                     }
                 },
                 "RedeemRequest": {
                     "vault": "AccountId",
                     "opentime": "BlockNumber",
-                    "fee": "PolkaBTC",
-                    "amount_btc": "PolkaBTC",
-                    "premium_dot": "DOT",
+                    "period": "BlockNumber",
+                    "fee": "Issuing",
+                    "transfer_fee_btc": "Issuing",
+                    "amount_btc": "Issuing",
+                    "premium": "Backing",
                     "redeemer": "AccountId",
                     "btc_address": "BtcAddress",
+                    "btc_height": "u32",
                     "status": "RedeemRequestStatus"
                 },
-                "RedeemRequestStatus": {
-                    "_enum": {
-                        "Pending": null,
-                        "Completed": null,
-                        "Reimbursed": "bool",
-                        "Retried": null
-                    }
+                "ReplaceRequestStatus": {
+                    "_enum": [
+                        "Pending",
+                        "Completed",
+                        "Cancelled"
+                    ]
                 },
                 "ReplaceRequest": {
                     "old_vault": "AccountId",
-                    "open_time": "BlockNumber",
-                    "amount": "PolkaBTC",
-                    "griefing_collateral": "DOT",
-                    "new_vault": "Option<AccountId>",
-                    "collateral": "DOT",
-                    "accept_time": "Option<BlockNumber>",
-                    "btc_address": "Option<BtcAddress>",
-                    "completed": "bool",
-                    "cancelled": "bool"
+                    "new_vault": "AccountId",
+                    "amount": "Issuing",
+                    "griefing_collateral": "Backing",
+                    "collateral": "Backing",
+                    "accept_time": "BlockNumber",
+                    "period": "BlockNumber",
+                    "btc_address": "BtcAddress",
+                    "btc_height": "u32",
+                    "status": "ReplaceRequestStatus"
                 },
                 "RefundRequest": {
                     "vault": "AccountId",
-                    "amount_polka_btc": "PolkaBTC",
-                    "fee": "PolkaBTC",
-                    "amount_btc": "PolkaBTC",
+                    "amount_issuing": "Issuing",
+                    "fee": "Issuing",
+                    "amount_btc": "Issuing",
                     "issuer": "AccountId",
                     "btc_address": "BtcAddress",
                     "issue_id": "H256",
@@ -196,19 +182,57 @@
                     "hour": "u32"
                 },
                 "Version": "u32",
+                "RegisterStakedRelayerJsonRpcRequest": {
+                    "stake": "u128"
+                },
+                "SuggestStatusUpdateJsonRpcRequest": {
+                    "deposit": "u128",
+                    "status_code": "StatusCode",
+                    "add_error": "Option<ErrorCode>",
+                    "remove_error": "Option<ErrorCode>",
+                    "block_hash": "Option<H256Le>",
+                    "message": "String"
+                },
+                "SystemVault": {
+                    "to_be_issued_tokens": "Issuing",
+                    "issued_tokens": "Issuing",
+                    "to_be_redeemed_tokens": "Issuing"
+                },
+                "RegisterVaultJsonRpcRequest": {
+                    "collateral": "u128"
+                },
                 "FundAccountJsonRpcRequest": {
                     "account_id": "AccountId"
                 },
-                "SystemVault": {
-                    "id": "AccountId",
-                    "to_be_issued_tokens": "PolkaBTC",
-                    "issued_tokens": "PolkaBTC",
-                    "to_be_redeemed_tokens": "PolkaBTC"
+                "ChangeCollateralJsonRpcRequest": {
+                    "amount": "u128"
+                },
+                "WithdrawReplaceJsonRpcRequest": {
+                    "replace_id": "H256"
                 },
                 "FixedPoint": "FixedI128",
                 "SignedFixedPoint": "FixedI128",
                 "UnsignedFixedPoint": "FixedU128",
-                "StatusUpdateId": "u64"
+                "Nominator": {
+                    "id": "AccountId",
+                    "collateral": "Backing",
+                    "pending_withdrawals": "BTreeMap<H256, (BlockNumber, Backing)>",
+                    "collateral_to_be_withdrawn": "Backing"
+                },
+                "Operator": {
+                    "id": "AccountId",
+                    "nominators": "BTreeMap<AccountId, Nominator<AccountId, BlockNumber, Backing>>",
+                    "total_nominated_collateral": "Backing",
+                    "pending_withdrawals":"BTreeMap<H256, (BlockNumber, Backing)>",
+                    "collateral_to_be_withdrawn": "Backing"
+                },
+                "RelayerEvent": {
+                    "_enum": [
+                        "BlockSubmission",
+                        "DuplicateBlockSubmission",
+                        "CorrectTheftReport"
+                    ]
+                }
             }
         }
     ],
@@ -241,6 +265,11 @@
             },
             "getVaultsWithIssuableTokens": {
                 "description": "Get all vaults with non-zero issuable tokens, ordered in descending order of this amount",
+                "params": [],
+                "type": "Vec<(AccountId, BalanceWrapper)>"
+            },
+            "getVaultsWithRedeemableTokens": {
+                "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
                 "params": [],
                 "type": "Vec<(AccountId, BalanceWrapper)>"
             },
@@ -291,7 +320,7 @@
                 "params": [],
                 "type": "UnsignedFixedPoint"
             },
-            "getRequiredCollateralForPolkabtc": {
+            "getRequiredCollateralForIssuing": {
                 "description": "Get the amount of collateral required to issue an amount of PolkaBTC",
                 "params": [
                     {
@@ -323,8 +352,8 @@
             }
         },
         "exchangeRateOracle": {
-            "btcToDots": {
-                "description": "BTC to DOT conversion rate",
+            "issuingToBacking": {
+                "description": "Issuing to Backing exchange rate",
                 "params": [
                     {
                         "name": "amount",
@@ -333,8 +362,8 @@
                 ],
                 "type": "BalanceWrapper"
             },
-            "dotsToBtc": {
-                "description": "DOT to BTC conversion rate",
+            "backingToIssuing": {
+                "description": "Backing to Issuing exchange rate",
                 "params": [
                     {
                         "name": "amount",
@@ -366,7 +395,7 @@
         },
         "stakedRelayers": {
             "isTransactionInvalid": {
-                "description": "BTC to DOT conversion rate",
+                "description": "Given a sender's AccountId and the raw transaction data, determine if it's invalid",
                 "params": [
                     {
                         "name": "vault_id",
