@@ -9,8 +9,8 @@
                 "H256Le": "H256",
                 "DOT": "u128",
                 "PolkaBTC": "Balance",
-                "Backing": "Balance",
-                "Issuing": "Balance",
+                "Collateral": "Balance",
+                "Wrapped": "Balance",
                 "StatusCode": {
                     "_enum": [
                         "Running",
@@ -89,13 +89,13 @@
                 },
                 "Vault": {
                     "id": "AccountId",
-                    "to_be_issued_tokens": "Issuing",
-                    "issued_tokens": "Issuing",
-                    "to_be_redeemed_tokens": "Issuing",
+                    "to_be_issued_tokens": "Wrapped",
+                    "issued_tokens": "Wrapped",
+                    "to_be_redeemed_tokens": "Wrapped",
                     "wallet": "Wallet",
-                    "backing_collateral": "Backing",
-                    "to_be_replaced_tokens": "Issuing",
-                    "replace_collateral": "Backing",
+                    "backing_collateral": "Collateral",
+                    "to_be_replaced_tokens": "Wrapped",
+                    "replace_collateral": "Collateral",
                     "banned_until": "Option<BlockNumber>",
                     "status": "VaultStatus"
                 },
@@ -114,9 +114,9 @@
                     "vault": "AccountId",
                     "opentime": "BlockNumber",
                     "period": "BlockNumber",
-                    "griefing_collateral": "Backing",
-                    "amount": "Issuing",
-                    "fee": "Issuing",
+                    "griefing_collateral": "Collateral",
+                    "amount": "Wrapped",
+                    "fee": "Wrapped",
                     "requester": "AccountId",
                     "btc_address": "BtcAddress",
                     "btc_public_key": "BtcPublicKey",
@@ -135,10 +135,10 @@
                     "vault": "AccountId",
                     "opentime": "BlockNumber",
                     "period": "BlockNumber",
-                    "fee": "Issuing",
-                    "transfer_fee_btc": "Issuing",
-                    "amount_btc": "Issuing",
-                    "premium": "Backing",
+                    "fee": "Wrapped",
+                    "transfer_fee_btc": "Wrapped",
+                    "amount_btc": "Wrapped",
+                    "premium": "Collateral",
                     "redeemer": "AccountId",
                     "btc_address": "BtcAddress",
                     "btc_height": "u32",
@@ -154,9 +154,9 @@
                 "ReplaceRequest": {
                     "old_vault": "AccountId",
                     "new_vault": "AccountId",
-                    "amount": "Issuing",
-                    "griefing_collateral": "Backing",
-                    "collateral": "Backing",
+                    "amount": "Wrapped",
+                    "griefing_collateral": "Collateral",
+                    "collateral": "Collateral",
                     "accept_time": "BlockNumber",
                     "period": "BlockNumber",
                     "btc_address": "BtcAddress",
@@ -165,9 +165,9 @@
                 },
                 "RefundRequest": {
                     "vault": "AccountId",
-                    "amount_issuing": "Issuing",
-                    "fee": "Issuing",
-                    "amount_btc": "Issuing",
+                    "amount_issuing": "Wrapped",
+                    "fee": "Wrapped",
+                    "amount_btc": "Wrapped",
                     "issuer": "AccountId",
                     "btc_address": "BtcAddress",
                     "issue_id": "H256",
@@ -194,9 +194,9 @@
                     "message": "String"
                 },
                 "SystemVault": {
-                    "to_be_issued_tokens": "Issuing",
-                    "issued_tokens": "Issuing",
-                    "to_be_redeemed_tokens": "Issuing"
+                    "to_be_issued_tokens": "Wrapped",
+                    "issued_tokens": "Wrapped",
+                    "to_be_redeemed_tokens": "Wrapped"
                 },
                 "RegisterVaultJsonRpcRequest": {
                     "collateral": "u128"
@@ -215,16 +215,16 @@
                 "UnsignedFixedPoint": "FixedU128",
                 "Nominator": {
                     "id": "AccountId",
-                    "collateral": "Backing",
-                    "pending_withdrawals": "BTreeMap<H256, (BlockNumber, Backing)>",
-                    "collateral_to_be_withdrawn": "Backing"
+                    "collateral": "Collateral",
+                    "pending_withdrawals": "BTreeMap<H256, (BlockNumber, Collateral)>",
+                    "collateral_to_be_withdrawn": "Collateral"
                 },
                 "Operator": {
                     "id": "AccountId",
-                    "nominators": "BTreeMap<AccountId, Nominator<AccountId, BlockNumber, Backing>>",
-                    "total_nominated_collateral": "Backing",
-                    "pending_withdrawals":"BTreeMap<H256, (BlockNumber, Backing)>",
-                    "collateral_to_be_withdrawn": "Backing"
+                    "nominators": "BTreeMap<AccountId, Nominator<AccountId, BlockNumber, Collateral>>",
+                    "total_nominated_collateral": "Collateral",
+                    "pending_withdrawals":"BTreeMap<H256, (BlockNumber, Collateral)>",
+                    "collateral_to_be_withdrawn": "Collateral"
                 },
                 "RelayerEvent": {
                     "_enum": [
@@ -352,8 +352,8 @@
             }
         },
         "exchangeRateOracle": {
-            "issuingToBacking": {
-                "description": "Issuing to Backing exchange rate",
+            "wrappedToCollateral": {
+                "description": "Wrapped to Collateral exchange rate",
                 "params": [
                     {
                         "name": "amount",
@@ -362,8 +362,8 @@
                 ],
                 "type": "BalanceWrapper"
             },
-            "backingToIssuing": {
-                "description": "Backing to Issuing exchange rate",
+            "collateralToWrapped": {
+                "description": "Collateral to Wrapped exchange rate",
                 "params": [
                     {
                         "name": "amount",
