@@ -320,7 +320,7 @@
                 "params": [],
                 "type": "UnsignedFixedPoint"
             },
-            "getRequiredCollateralForIssuing": {
+            "getRequiredCollateralForWrapped": {
                 "description": "Get the amount of collateral required to issue an amount of PolkaBTC",
                 "params": [
                     {
