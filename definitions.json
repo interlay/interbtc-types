@@ -87,6 +87,7 @@
                     "banned_until": "Option<BlockNumber>",
                     "status": "VaultStatus",
                     "slash_per_token": "SignedFixedPoint",
+                    "slash_tally": "SignedFixedPoint",
                     "backing_collateral": "Collateral",
                     "total_collateral": "Collateral",
                     "collateral": "Collateral"
