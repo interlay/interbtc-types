@@ -196,6 +196,9 @@
                         "StoreBlock",
                         "TheftReport"
                     ]
+                },
+                "FundAccountJsonRpcRequest": {
+                    "account_id": "AccountId"
                 }
             }
         }
