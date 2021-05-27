@@ -36,18 +36,6 @@
                         "CommittedTheft": "()"
                     }
                 },
-                "RelayerEvent": {
-                    "_enum": [
-                        "BlockSubmission",
-                        "DuplicateBlockSubmission",
-                        "CorrectNoDataVoteOrReport",
-                        "CorrectInvalidVoteOrReport",
-                        "CorrectTheftReport",
-                        "FalseNoDataVoteOrReport",
-                        "FalseInvalidVoteOrReport",
-                        "IgnoredVote"
-                    ]
-                },
                 "RawBlockHeader": {
                     "0": "[u8; 80]"
                 },
@@ -93,15 +81,15 @@
                     "issued_tokens": "Wrapped",
                     "to_be_redeemed_tokens": "Wrapped",
                     "wallet": "Wallet",
-                    "backing_collateral": "Collateral",
                     "to_be_replaced_tokens": "Wrapped",
                     "replace_collateral": "Collateral",
+                    "liquidated_collateral": "Collateral",
                     "banned_until": "Option<BlockNumber>",
-                    "status": "VaultStatus"
-                },
-                "StakedRelayer": {
-                    "stake": "Balance",
-                    "height": "BlockNumber"
+                    "status": "VaultStatus",
+                    "slash_per_token": "SignedFixedPoint",
+                    "backing_collateral": "Collateral",
+                    "total_collateral": "Collateral",
+                    "collateral": "Collateral"
                 },
                 "IssueRequestStatus": {
                     "_enum": {
@@ -182,55 +170,31 @@
                     "hour": "u32"
                 },
                 "Version": "u32",
-                "RegisterStakedRelayerJsonRpcRequest": {
-                    "stake": "u128"
-                },
-                "SuggestStatusUpdateJsonRpcRequest": {
-                    "deposit": "u128",
-                    "status_code": "StatusCode",
-                    "add_error": "Option<ErrorCode>",
-                    "remove_error": "Option<ErrorCode>",
-                    "block_hash": "Option<H256Le>",
-                    "message": "String"
-                },
                 "SystemVault": {
                     "to_be_issued_tokens": "Wrapped",
                     "issued_tokens": "Wrapped",
                     "to_be_redeemed_tokens": "Wrapped"
-                },
-                "RegisterVaultJsonRpcRequest": {
-                    "collateral": "u128"
-                },
-                "FundAccountJsonRpcRequest": {
-                    "account_id": "AccountId"
-                },
-                "ChangeCollateralJsonRpcRequest": {
-                    "amount": "u128"
-                },
-                "WithdrawReplaceJsonRpcRequest": {
-                    "replace_id": "H256"
                 },
                 "FixedPoint": "FixedI128",
                 "SignedFixedPoint": "FixedI128",
                 "UnsignedFixedPoint": "FixedU128",
                 "Nominator": {
                     "id": "AccountId",
+                    "operator_id": "AccountId",
                     "collateral": "Collateral",
                     "pending_withdrawals": "BTreeMap<H256, (BlockNumber, Collateral)>",
-                    "collateral_to_be_withdrawn": "Collateral"
+                    "collateral_to_be_withdrawn": "Collateral",
+                    "slash_tally": "SignedFixedPoint"
                 },
                 "Operator": {
                     "id": "AccountId",
-                    "nominators": "BTreeMap<AccountId, Nominator<AccountId, BlockNumber, Collateral>>",
-                    "total_nominated_collateral": "Collateral",
-                    "pending_withdrawals":"BTreeMap<H256, (BlockNumber, Collateral)>",
+                    "pending_withdrawals": "BTreeMap<H256, (BlockNumber, Collateral)>",
                     "collateral_to_be_withdrawn": "Collateral"
                 },
                 "RelayerEvent": {
                     "_enum": [
-                        "BlockSubmission",
-                        "DuplicateBlockSubmission",
-                        "CorrectTheftReport"
+                        "StoreBlock",
+                        "TheftReport"
                     ]
                 }
             }
