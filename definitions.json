@@ -181,16 +181,9 @@
                 "UnsignedFixedPoint": "FixedU128",
                 "Nominator": {
                     "id": "AccountId",
-                    "operator_id": "AccountId",
+                    "vault_id": "AccountId",
                     "collateral": "Collateral",
-                    "pending_withdrawals": "BTreeMap<H256, (BlockNumber, Collateral)>",
-                    "collateral_to_be_withdrawn": "Collateral",
-                    "slash_tally": "SignedFixedPoint"
-                },
-                "Operator": {
-                    "id": "AccountId",
-                    "pending_withdrawals": "BTreeMap<H256, (BlockNumber, Collateral)>",
-                    "collateral_to_be_withdrawn": "Collateral"
+                    "slash_tally": "Collateral"
                 },
                 "RelayerEvent": {
                     "_enum": [
