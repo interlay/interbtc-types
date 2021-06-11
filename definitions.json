@@ -118,6 +118,12 @@
                         "Retried": "()"
                     }
                 },
+                "RewardPool": {
+                    "_enum": {
+                        "Global": "()",
+                        "Local": "AccountId"
+                    }
+                },
                 "RedeemRequest": {
                     "vault": "AccountId",
                     "opentime": "BlockNumber",
