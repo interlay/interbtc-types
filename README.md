@@ -1,6 +1,6 @@
-# PolkaBTC Types
+# InterBTC Types
 
-Substrate types used in PolkaBTC parachain.
+Substrate types used in InterBTC parachain.
 
 
 ## Usage
@@ -8,7 +8,7 @@ Substrate types used in PolkaBTC parachain.
 Import the types in your JS or TS app.
 
 ```ts
-import definitions from "@interlay/polkabtc-types";
+import definitions from "@interlay/interbtc-types";
 ```
 
 ## Development
