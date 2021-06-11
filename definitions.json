@@ -7,8 +7,6 @@
             ],
             "types": {
                 "H256Le": "H256",
-                "DOT": "u128",
-                "PolkaBTC": "Balance",
                 "Collateral": "Balance",
                 "Wrapped": "Balance",
                 "StatusCode": {
@@ -200,7 +198,7 @@
     "rpc": {
         "vaultRegistry": {
             "getFirstVaultWithSufficientCollateral": {
-                "description": "Get the first available vault with sufficient collateral to fulfil an issue request with the specified amount of PolkaBTC.",
+                "description": "Get the first available vault with sufficient collateral to fulfil an issue request with the specified amount of InterBTC.",
                 "params": [
                     {
                         "name": "amount",
@@ -210,7 +208,7 @@
                 "type": "AccountId"
             },
             "getFirstVaultWithSufficientTokens": {
-                "description": "Get the first available vault with sufficient tokens to fulfil an redeem request with the specified amount of PolkaBTC.",
+                "description": "Get the first available vault with sufficient tokens to fulfil an redeem request with the specified amount of InterBTC.",
                 "params": [
                     {
                         "name": "amount",
@@ -282,7 +280,7 @@
                 "type": "UnsignedFixedPoint"
             },
             "getRequiredCollateralForWrapped": {
-                "description": "Get the amount of collateral required to issue an amount of PolkaBTC",
+                "description": "Get the amount of collateral required to issue an amount of InterBTC",
                 "params": [
                     {
                         "name": "amount_btc",
@@ -472,7 +470,7 @@
     "instances": {
         "balances": [
             "dot",
-            "polkaBtc"
+            "interBTC"
         ]
     }
 }
