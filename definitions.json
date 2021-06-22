@@ -7,6 +7,7 @@
             ],
             "types": {
                 "H256Le": "H256",
+                "Value": "i64",
                 "Collateral": "Balance",
                 "Wrapped": "Balance",
                 "StatusCode": {
@@ -123,6 +124,12 @@
                         "Global": "()",
                         "Local": "AccountId"
                     }
+                },
+                "CurrencyId": {
+                    "_enum": [
+                        "DOT",
+                        "INTERBTC"
+                    ]
                 },
                 "RedeemRequest": {
                     "vault": "AccountId",
