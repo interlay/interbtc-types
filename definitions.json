@@ -38,6 +38,7 @@
                 "RawBlockHeader": {
                     "0": "[u8; 80]"
                 },
+                "LockIdentifier": "[u8; 8]",
                 "RichBlockHeader": {
                     "block_hash": "H256Le",
                     "block_header": "BlockHeader",
@@ -45,6 +46,15 @@
                     "chain_ref": "u32",
                     "account_id": "AccountId",
                     "para_height": "BlockNumber"
+                },
+                "AccountData": {
+                    "free": "Balance",
+                    "reserved": "Balance",
+                    "frozen": "Balance"
+                },
+                "BalanceLock": {
+                    "amount": "Balance",
+                    "id": "LockIdentifier"
                 },
                 "BlockHeader": {
                     "merkle_root": "H256Le",
@@ -128,6 +138,7 @@
                 "CurrencyId": {
                     "_enum": [
                         "DOT",
+                        "KSM",
                         "INTERBTC"
                     ]
                 },
@@ -194,7 +205,7 @@
                     "id": "AccountId",
                     "vault_id": "AccountId",
                     "collateral": "Collateral",
-                    "slash_tally": "Collateral"
+                    "slash_tally": "SignedFixedPoint"
                 },
                 "RelayerEvent": {
                     "_enum": [
