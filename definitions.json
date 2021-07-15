@@ -23,8 +23,6 @@
                 "ErrorCode": {
                     "_enum": [
                         "None",
-                        "NoDataBTCRelay",
-                        "InvalidBTCRelay",
                         "OracleOffline"
                     ]
                 },
@@ -40,11 +38,9 @@
                 },
                 "LockIdentifier": "[u8; 8]",
                 "RichBlockHeader": {
-                    "block_hash": "H256Le",
                     "block_header": "BlockHeader",
                     "block_height": "u32",
-                    "chain_ref": "u32",
-                    "account_id": "AccountId",
+                    "chain_id": "u32",
                     "para_height": "BlockNumber"
                 },
                 "AccountData": {
@@ -61,15 +57,14 @@
                     "target": "U256",
                     "timestamp": "u32",
                     "version": "i32",
+                    "hash": "H256Le",
                     "hash_prev_block": "H256Le",
                     "nonce": "u32"
                 },
                 "BlockChain": {
                     "chain_id": "u32",
                     "start_height": "u32",
-                    "max_height": "u32",
-                    "no_data": "BTreeSet<u32>",
-                    "invalid": "BTreeSet<u32>"
+                    "max_height": "u32"
                 },
                 "BtcAddress": {
                     "_enum": {
@@ -86,20 +81,15 @@
                 },
                 "Vault": {
                     "id": "AccountId",
+                    "wallet": "Wallet",
+                    "status": "VaultStatus",
+                    "banned_until": "Option<BlockNumber>",
                     "to_be_issued_tokens": "Wrapped",
                     "issued_tokens": "Wrapped",
                     "to_be_redeemed_tokens": "Wrapped",
-                    "wallet": "Wallet",
                     "to_be_replaced_tokens": "Wrapped",
                     "replace_collateral": "Collateral",
                     "liquidated_collateral": "Collateral",
-                    "banned_until": "Option<BlockNumber>",
-                    "status": "VaultStatus",
-                    "slash_per_token": "SignedFixedPoint",
-                    "slash_tally": "SignedFixedPoint",
-                    "backing_collateral": "Collateral",
-                    "total_collateral": "Collateral",
-                    "collateral": "Collateral"
                 },
                 "IssueRequestStatus": {
                     "_enum": {
@@ -129,17 +119,12 @@
                         "Retried": "()"
                     }
                 },
-                "RewardPool": {
-                    "_enum": {
-                        "Global": "()",
-                        "Local": "AccountId"
-                    }
-                },
                 "CurrencyId": {
                     "_enum": [
                         "DOT",
                         "KSM",
-                        "INTERBTC"
+                        "INTERBTC",
+                        "INTR"
                     ]
                 },
                 "RedeemRequest": {
@@ -201,18 +186,6 @@
                 "FixedPoint": "FixedI128",
                 "SignedFixedPoint": "FixedI128",
                 "UnsignedFixedPoint": "FixedU128",
-                "Nominator": {
-                    "id": "AccountId",
-                    "vault_id": "AccountId",
-                    "collateral": "Collateral",
-                    "slash_tally": "SignedFixedPoint"
-                },
-                "RelayerEvent": {
-                    "_enum": [
-                        "StoreBlock",
-                        "TheftReport"
-                    ]
-                },
                 "FundAccountJsonRpcRequest": {
                     "account_id": "AccountId"
                 }
@@ -221,6 +194,26 @@
     ],
     "rpc": {
         "vaultRegistry": {
+            "getVaultCollateral": {
+                "description": "Get the vault's collateral (excluding nomination)",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "BalanceWrapper"
+            },
+            "getVaultTotalCollateral": {
+                "description": "Get the vault's collateral (including nomination)",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "BalanceWrapper"
+            },
             "getFirstVaultWithSufficientCollateral": {
                 "description": "Get the first available vault with sufficient collateral to fulfil an issue request with the specified amount of InterBTC.",
                 "params": [
