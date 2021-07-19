@@ -89,7 +89,7 @@
                     "to_be_redeemed_tokens": "Wrapped",
                     "to_be_replaced_tokens": "Wrapped",
                     "replace_collateral": "Collateral",
-                    "liquidated_collateral": "Collateral",
+                    "liquidated_collateral": "Collateral"
                 },
                 "IssueRequestStatus": {
                     "_enum": {
