@@ -127,6 +127,19 @@
                         "INTR"
                     ]
                 },
+                "BitcoinInclusionTime": {
+                    "_enum": [
+                        "Fast",
+                        "Half",
+                        "Hour"
+                    ]
+                },
+                "OracleKey": {
+                    "_enum": {
+                        "ExchangeRate": "CurrencyId",
+                        "FeeEstimation": "BitcoinInclusionTime"
+                    }
+                },
                 "RedeemRequest": {
                     "vault": "AccountId",
                     "opentime": "BlockNumber",
@@ -171,11 +184,6 @@
                 },
                 "BalanceWrapper": {
                     "amount": "String"
-                },
-                "BtcTxFeesPerByte": {
-                    "fast": "u32",
-                    "half": "u32",
-                    "hour": "u32"
                 },
                 "Version": "u32",
                 "SystemVault": {
@@ -347,26 +355,6 @@
                     }
                 ],
                 "type": "BalanceWrapper"
-            }
-        },
-        "sla": {
-            "calculateSlashedAmount": {
-                "description": "Amount that is slashed when the the vault fails to execute.",
-                "params": [
-                    {
-                        "name": "vault_id",
-                        "type": "AccountId"
-                    },
-                    {
-                        "name": "stake",
-                        "type": "BalanceWrapper"
-                    },
-                    {
-                        "name": "at",
-                        "type": "Option<BlockHash>"
-                    }
-                ],
-                "type": "void"
             }
         },
         "stakedRelayers": {
