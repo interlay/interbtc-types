@@ -185,6 +185,10 @@
                 "BalanceWrapper": {
                     "amount": "String"
                 },
+                "TimestampedValue": {
+                    "value": "Value",
+                    "timestamp": "Moment"
+                },
                 "Version": "u32",
                 "SystemVault": {
                     "to_be_issued_tokens": "Wrapped",
