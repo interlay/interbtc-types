@@ -1,6 +1,6 @@
 {
     "name": "@interlay/interbtc-types",
-    "version": "0.10.1",
+    "version": "0.10.2",
     "description": "Substrate types used in InterBTC parachain",
     "main": "build/index.js",
     "typings": "index.d.ts",
