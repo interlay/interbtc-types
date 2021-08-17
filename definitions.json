@@ -474,6 +474,18 @@
                 ],
                 "type": "Vec<(H256, RefundRequest)>"
             }
+        },
+        "btcRelay": {
+            "verifyBlockHeaderInclusion": {
+                "description": "Verify that the block with the given hash is included",
+                "params": [
+                    {
+                        "name": "block_hash",
+                        "type": "H256Le"
+                    }
+                ],
+                "type": "void"
+            }
         }
     },
     "instances": {
