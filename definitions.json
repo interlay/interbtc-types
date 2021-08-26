@@ -123,9 +123,11 @@
                 "CurrencyId": {
                     "_enum": [
                         "DOT",
-                        "KSM",
                         "INTERBTC",
-                        "INTR"
+                        "INTR",
+                        "KSM",
+                        "KBTC",
+                        "KINT"
                     ]
                 },
                 "OracleKey": {
@@ -337,7 +339,7 @@
                 "type": "bool"
             }
         },
-        "exchangeRateOracle": {
+        "oracle": {
             "wrappedToCollateral": {
                 "description": "Wrapped to Collateral exchange rate",
                 "params": [
@@ -367,7 +369,7 @@
                 "type": "BalanceWrapper"
             }
         },
-        "stakedRelayers": {
+        "relay": {
             "isTransactionInvalid": {
                 "description": "Given a sender's AccountId and the raw transaction data, determine if it's invalid",
                 "params": [
