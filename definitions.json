@@ -10,6 +10,7 @@
                 "Value": "i64",
                 "Collateral": "Balance",
                 "Wrapped": "Balance",
+                "UnsignedInner": "u128",
                 "StatusCode": {
                     "_enum": [
                         "Running",
@@ -43,12 +44,12 @@
                     "chain_id": "u32",
                     "para_height": "BlockNumber"
                 },
-                "AccountData": {
+                "OrmlAccountData": {
                     "free": "Balance",
                     "reserved": "Balance",
                     "frozen": "Balance"
                 },
-                "BalanceLock": {
+                "OrmlBalanceLock": {
                     "amount": "Balance",
                     "id": "LockIdentifier"
                 },
@@ -92,6 +93,7 @@
                     "liquidated_collateral": "Collateral",
                     "currency_id": "CurrencyId"
                 },
+                "DefaultVault": "Vault",
                 "IssueRequestStatus": {
                     "_enum": {
                         "Pending": "()",
@@ -133,7 +135,7 @@
                 "OracleKey": {
                     "_enum": {
                         "ExchangeRate": "CurrencyId",
-                        "FeeEstimation": "void"
+                        "FeeEstimation": "()"
                     }
                 },
                 "RedeemRequest": {
@@ -228,6 +230,10 @@
                     {
                         "name": "amount",
                         "type": "BalanceWrapper"
+                    },
+                    {
+                        "name": "currency_id",
+                        "type": "CurrencyId"
                     }
                 ],
                 "type": "AccountId"
@@ -494,6 +500,12 @@
                 ],
                 "type": "void"
             }
+        }
+    },
+    "alias": {
+        "tokens": {
+            "AccountData": "OrmlAccountData",
+            "BalanceLock": "OrmlBalanceLock"
         }
     },
     "instances": {
