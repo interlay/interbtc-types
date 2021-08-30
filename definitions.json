@@ -44,6 +44,12 @@
                     "chain_id": "u32",
                     "para_height": "BlockNumber"
                 },
+                "AccountData": {
+                    "free": "Balance",
+                    "reserved": "Balance",
+                    "misc_frozen": "Balance",
+                    "fee_frozen": "Balance"
+                },
                 "OrmlAccountData": {
                     "free": "Balance",
                     "reserved": "Balance",
