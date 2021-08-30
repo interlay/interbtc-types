@@ -496,6 +496,11 @@
             }
         }
     },
+    "alias": {
+        "tokens": {
+          "AccountData": "AccountData"
+        }
+    },
     "instances": {
         "balances": [
             "dot",
