@@ -47,8 +47,7 @@
                 "AccountData": {
                     "free": "Balance",
                     "reserved": "Balance",
-                    "misc_frozen": "Balance",
-                    "fee_frozen": "Balance"
+                    "frozen": "Balance"
                 },
                 "OrmlAccountData": {
                     "free": "Balance",
@@ -516,6 +515,7 @@
     },
     "instances": {
         "balances": [
+            "ksm",
             "dot",
             "interBTC"
         ]
