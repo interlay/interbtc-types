@@ -198,6 +198,7 @@
                     "issued_tokens": "Wrapped",
                     "to_be_redeemed_tokens": "Wrapped"
                 },
+                "DefaultSystemVault": "SystemVault",
                 "FixedPoint": "FixedI128",
                 "SignedFixedPoint": "FixedI128",
                 "UnsignedFixedPoint": "FixedU128",
