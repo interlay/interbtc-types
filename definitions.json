@@ -196,7 +196,8 @@
                 "SystemVault": {
                     "to_be_issued_tokens": "Wrapped",
                     "issued_tokens": "Wrapped",
-                    "to_be_redeemed_tokens": "Wrapped"
+                    "to_be_redeemed_tokens": "Wrapped",
+                    "currency_id": "CurrencyId"
                 },
                 "DefaultSystemVault": "SystemVault",
                 "FixedPoint": "FixedI128",
