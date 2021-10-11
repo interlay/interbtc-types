@@ -85,18 +85,26 @@
                     "addresses": "BTreeSet<BtcAddress>",
                     "public_key": "BtcPublicKey"
                 },
+                "VaultCurrencyPair": {
+                    "collateral": "CurrencyId",
+                    "wrapped": "CurrencyId"
+                },
+                "VaultId": {
+                    "account_id": "AccountId",
+                    "currencies": "VaultCurrencyPair"
+                },
                 "Vault": {
-                    "id": "AccountId",
+                    "id": "VaultId",
                     "wallet": "Wallet",
                     "status": "VaultStatus",
                     "banned_until": "Option<BlockNumber>",
-                    "to_be_issued_tokens": "Wrapped",
-                    "issued_tokens": "Wrapped",
-                    "to_be_redeemed_tokens": "Wrapped",
-                    "to_be_replaced_tokens": "Wrapped",
-                    "replace_collateral": "Collateral",
-                    "liquidated_collateral": "Collateral",
-                    "currency_id": "CurrencyId"
+                    "to_be_issued_tokens": "Balance",
+                    "issued_tokens": "Balance",
+                    "to_be_redeemed_tokens": "Balance",
+                    "to_be_replaced_tokens": "Balance",
+                    "replace_collateral": "Balance",
+                    "active_replace_collateral": "Balance",
+                    "liquidated_collateral": "Balance"
                 },
                 "DefaultVault": "Vault",
                 "IssueRequestStatus": {
@@ -107,12 +115,12 @@
                     }
                 },
                 "IssueRequest": {
-                    "vault": "AccountId",
+                    "vault": "VaultId",
                     "opentime": "BlockNumber",
                     "period": "BlockNumber",
-                    "griefing_collateral": "Collateral",
-                    "amount": "Wrapped",
-                    "fee": "Wrapped",
+                    "griefing_collateral": "Balance",
+                    "amount": "Balance",
+                    "fee": "Balance",
                     "requester": "AccountId",
                     "btc_address": "BtcAddress",
                     "btc_public_key": "BtcPublicKey",
@@ -144,13 +152,13 @@
                     }
                 },
                 "RedeemRequest": {
-                    "vault": "AccountId",
+                    "vault": "VaultId",
                     "opentime": "BlockNumber",
                     "period": "BlockNumber",
-                    "fee": "Wrapped",
-                    "transfer_fee_btc": "Wrapped",
-                    "amount_btc": "Wrapped",
-                    "premium": "Collateral",
+                    "fee": "Balance",
+                    "transfer_fee_btc": "Balance",
+                    "amount_btc": "Balance",
+                    "premium": "Balance",
                     "redeemer": "AccountId",
                     "btc_address": "BtcAddress",
                     "btc_height": "u32",
@@ -164,11 +172,11 @@
                     ]
                 },
                 "ReplaceRequest": {
-                    "old_vault": "AccountId",
-                    "new_vault": "AccountId",
-                    "amount": "Wrapped",
-                    "griefing_collateral": "Collateral",
-                    "collateral": "Collateral",
+                    "old_vault": "VaultId",
+                    "new_vault": "VaultId",
+                    "amount": "Balance",
+                    "griefing_collateral": "Balance",
+                    "collateral": "Balance",
                     "accept_time": "BlockNumber",
                     "period": "BlockNumber",
                     "btc_address": "BtcAddress",
@@ -176,10 +184,9 @@
                     "status": "ReplaceRequestStatus"
                 },
                 "RefundRequest": {
-                    "vault": "AccountId",
-                    "amount_issuing": "Wrapped",
-                    "fee": "Wrapped",
-                    "amount_btc": "Wrapped",
+                    "vault": "VaultId",
+                    "amount_btc": "Balance",
+                    "fee": "Balance",
                     "issuer": "AccountId",
                     "btc_address": "BtcAddress",
                     "issue_id": "H256",
@@ -194,10 +201,11 @@
                 },
                 "Version": "u32",
                 "SystemVault": {
-                    "to_be_issued_tokens": "Wrapped",
-                    "issued_tokens": "Wrapped",
-                    "to_be_redeemed_tokens": "Wrapped",
-                    "currency_id": "CurrencyId"
+                    "to_be_issued_tokens": "Balance",
+                    "issued_tokens": "Balance",
+                    "to_be_redeemed_tokens": "Balance",
+                    "collateral": "Balance",
+                    "currency_pair": "VaultCurrencyPair"
                 },
                 "DefaultSystemVault": "SystemVault",
                 "FixedPoint": "FixedI128",
@@ -216,66 +224,52 @@
                 "params": [
                     {
                         "name": "vault_id",
-                        "type": "AccountId"
+                        "type": "VaultId"
                     }
                 ],
                 "type": "BalanceWrapper"
+            },
+            "getVaultsByAccountId": {
+                "description": "Get all vaults that are registered using the given account _id",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    }
+                ],
+                "type": "Vec<VaultId>"
             },
             "getVaultTotalCollateral": {
                 "description": "Get the vault's collateral (including nomination)",
                 "params": [
                     {
                         "name": "vault_id",
-                        "type": "AccountId"
+                        "type": "VaultId"
                     }
                 ],
                 "type": "BalanceWrapper"
             },
-            "getFirstVaultWithSufficientCollateral": {
-                "description": "Get the first available vault with sufficient collateral to fulfil an issue request with the specified amount of InterBTC.",
-                "params": [
-                    {
-                        "name": "amount",
-                        "type": "BalanceWrapper"
-                    },
-                    {
-                        "name": "currency_id",
-                        "type": "CurrencyId"
-                    }
-                ],
-                "type": "AccountId"
-            },
-            "getFirstVaultWithSufficientTokens": {
-                "description": "Get the first available vault with sufficient tokens to fulfil an redeem request with the specified amount of InterBTC.",
-                "params": [
-                    {
-                        "name": "amount",
-                        "type": "BalanceWrapper"
-                    }
-                ],
-                "type": "AccountId"
-            },
             "getPremiumRedeemVaults": {
                 "description": "Get all vaults below the premium redeem threshold.",
                 "params": [],
-                "type": "Vec<(AccountId, BalanceWrapper)>"
+                "type": "Vec<(VaultId, BalanceWrapper)>"
             },
             "getVaultsWithIssuableTokens": {
                 "description": "Get all vaults with non-zero issuable tokens, ordered in descending order of this amount",
                 "params": [],
-                "type": "Vec<(AccountId, BalanceWrapper)>"
+                "type": "Vec<(VaultId, BalanceWrapper)>"
             },
             "getVaultsWithRedeemableTokens": {
                 "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
                 "params": [],
-                "type": "Vec<(AccountId, BalanceWrapper)>"
+                "type": "Vec<(VaultId, BalanceWrapper)>"
             },
             "getIssueableTokensFromVault": {
                 "description": "Get the amount of tokens a vault can issue",
                 "params": [
                     {
                         "name": "vault",
-                        "type": "AccountId"
+                        "type": "VaultId"
                     }
                 ],
                 "type": "BalanceWrapper"
@@ -284,8 +278,8 @@
                 "description": "Returns the collateralization of a specific vault",
                 "params": [
                     {
-                        "name": "vault_id",
-                        "type": "AccountId"
+                        "name": "vault",
+                        "type": "VaultId"
                     },
                     {
                         "name": "only_issued",
@@ -298,8 +292,8 @@
                 "description": "Returns the collateralization of a specific vault and collateral",
                 "params": [
                     {
-                        "name": "vault_id",
-                        "type": "AccountId"
+                        "name": "vault",
+                        "type": "VaultId"
                     },
                     {
                         "name": "collateral",
@@ -310,11 +304,6 @@
                         "type": "bool"
                     }
                 ],
-                "type": "UnsignedFixedPoint"
-            },
-            "getTotalCollateralization": {
-                "description": "Get the total collateralization of the system",
-                "params": [],
                 "type": "UnsignedFixedPoint"
             },
             "getRequiredCollateralForWrapped": {
@@ -336,20 +325,10 @@
                 "params": [
                     {
                         "name": "vault_id",
-                        "type": "AccountId"
+                        "type": "VaultId"
                     }
                 ],
                 "type": "BalanceWrapper"
-            },
-            "isVaultBelowAuctionThreshold": {
-                "description": "Check if the identified vault is below the auction threshold",
-                "params": [
-                    {
-                        "name": "vault_id",
-                        "type": "AccountId"
-                    }
-                ],
-                "type": "bool"
             }
         },
         "oracle": {
@@ -384,11 +363,11 @@
         },
         "relay": {
             "isTransactionInvalid": {
-                "description": "Given a sender's AccountId and the raw transaction data, determine if it's invalid",
+                "description": "Determine if the RawTx is invalid for the specified VaultId",
                 "params": [
                     {
                         "name": "vault_id",
-                        "type": "AccountId"
+                        "type": "VaultId"
                     },
                     {
                         "name": "raw_tx",
@@ -518,8 +497,11 @@
     "instances": {
         "balances": [
             "ksm",
+            "kbtc",
+            "kint",
             "dot",
-            "interBTC"
+            "interBTC",
+            "intr"
         ]
     }
 }
