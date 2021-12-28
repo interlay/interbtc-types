@@ -2,7 +2,6 @@
 
 Substrate types used in InterBTC parachain.
 
-
 ## Usage
 
 Import the types in your JS or TS app.

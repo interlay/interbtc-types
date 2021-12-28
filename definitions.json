@@ -13,11 +13,17 @@
                     "amount": "i128"
                 },
                 "InterbtcPrimitivesCurrencyId": {
-                    "_enum": ["DOT", "INTERBTC", "INTR", "KSM", "KBTC", "KINT"]
+                    "_enum": { 
+                        "Token": "InterbtcPrimitivesTokenSymbol" 
+                    }
                 },
+                "InterbtcPrimitivesTokenSymbol": "TokenSymbol",
                 "FundAccountJsonRpcRequest": {
                     "account_id": "AccountId",
                     "currency_id": "InterbtcPrimitivesCurrencyId"
+                },
+                "TokenSymbol": {
+                    "_enum": ["KINT", "KBTC", "KSM", "INTR", "INTERBTC", "DOT"]
                 }
             }
         }
