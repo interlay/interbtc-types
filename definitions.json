@@ -12,14 +12,18 @@
                 },
                 "CurrencyId": {
                     "_enum": {
-                        "Token": "TokenSymbol"
+                        "Token": "TokenSymbol",
+                        "ForeignAsset": "ForeignAssetId"
                     }
                 },
                 "InterbtcPrimitivesCurrencyId": {
                     "_enum": {
-                        "Token": "InterbtcPrimitivesTokenSymbol"
+                        "Token": "InterbtcPrimitivesTokenSymbol",
+                        "ForeignAsset": "InterbtcForeignAssetId"
                     }
                 },
+                "InterbtcForeignAssetId": "u32",
+                "ForeignAssetId": "u32",
                 "FundAccountJsonRpcRequest": {
                     "account_id": "AccountId",
                     "currency_id": "InterbtcPrimitivesCurrencyId"
