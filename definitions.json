@@ -374,6 +374,29 @@
                 "params": [],
                 "type": "Vec<(VaultId, BalanceWrapper)>"
             }
+        },
+        "loans": {
+        	"getMarketStatus": {
+        		"description": "Get real-time market data",
+        		"params": [
+        			{
+        				"name": "asset_id",
+        				"type": "CurrencyId"
+        			}
+        		],
+                "type": "(Rate, Rate, Rate, Ratio, NumberOrHex, NumberOrHex, FixedU128)"
+        	},
+        	"getLiquidationThresholdLiquidity": {
+        		"description": "Get liquidation threshold liquidity",
+        		"params": [
+        			{
+        				"name": "account",
+        				"type": "AccountId"
+        			}
+        		],
+                "type": "(Liquidity, Shortfall)"
+        	}
+        	
         }
     },
     "alias": {
