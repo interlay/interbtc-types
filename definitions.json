@@ -27,6 +27,10 @@
                 "ForeignAssetId": "u32",
                 "InterbtcLendTokenId": "u32",
                 "LendTokenId": "u32",
+                "Rate": "FixedU128",
+                "Ratio": "Permill",
+                "Liquidity": "FixedU128",
+                "Shortfall": "FixedU128",
                 "FundAccountJsonRpcRequest": {
                     "account_id": "AccountId",
                     "currency_id": "InterbtcPrimitivesCurrencyId"
@@ -102,6 +106,68 @@
                     }
                 ],
                 "type": "BalanceWrapper"
+            }
+        },
+        "loans": {
+            "getCollateralLiquidity": {
+                "description": "Retrieves collateral liquidity for the given user.",
+                "params": [
+                    {
+                        "name": "account",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "at",
+                        "type": "BlockHash",
+                        "isHistoric": true,
+                        "isOptional": true
+                    }
+                ],
+                "type": "(Liquidity, Shortfall, Liquidity, Shortfall)",
+                "isSubscription": false,
+                "jsonrpc": "loans_getCollateralLiquidity",
+                "method": "getCollateralLiquidity",
+                "section": "loans"
+            },
+            "getLiquidationThresholdLiquidity": {
+                "description": "Retrieves liquidation threshold liquidity for the given user.",
+                "params": [
+                    {
+                        "name": "account",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "at",
+                        "type": "BlockHash",
+                        "isHistoric": true,
+                        "isOptional": true
+                    }
+                ],
+                "type": "(Liquidity, Shortfall, Liquidity, Shortfall)",
+                "isSubscription": false,
+                "jsonrpc": "loans_getLiquidationThresholdLiquidity",
+                "method": "getLiquidationThresholdLiquidity",
+                "section": "loans"
+            },
+            "getMarketStatus": {
+                "description": "Retrieves market status data for a given asset id.",
+                "params": [
+                    {
+                        "name": "asset_id",
+                        "type": "CurrencyId"
+                    },
+                    {
+                        "name": "at",
+                        "type": "BlockHash",
+                        "isHistoric": true,
+                        "isOptional": true
+                    }
+                ],
+                "type": "(Rate, Rate, Rate, Ratio, Balance, Balance, FixedU128)",
+                "isSubscription": false,
+                "jsonrpc": "loans_getMarketStatus",
+                "method": "getMarketStatus",
+                "section": "loans"
             }
         },
         "issue": {
@@ -374,29 +440,6 @@
                 "params": [],
                 "type": "Vec<(VaultId, BalanceWrapper)>"
             }
-        },
-        "loans": {
-        	"getMarketStatus": {
-        		"description": "Get real-time market data",
-        		"params": [
-        			{
-        				"name": "asset_id",
-        				"type": "CurrencyId"
-        			}
-        		],
-                "type": "(Rate, Rate, Rate, Ratio, NumberOrHex, NumberOrHex, FixedU128)"
-        	},
-        	"getLiquidationThresholdLiquidity": {
-        		"description": "Get liquidation threshold liquidity",
-        		"params": [
-        			{
-        				"name": "account",
-        				"type": "AccountId"
-        			}
-        		],
-                "type": "(Liquidity, Shortfall)"
-        	}
-        	
         }
     },
     "alias": {
