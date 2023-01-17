@@ -47,6 +47,12 @@
                 "InterbtcStablePoolId": "u32",
                 "LendTokenId": "u32",
                 "StablePoolId": "u32",
+                "NumberOrHex": {
+                    "_enum": {
+                        "Number": "u64",
+                        "Hex": "U256"
+                    }
+                },
                 "Rate": "FixedU128",
                 "Ratio": "Permill",
                 "Liquidity": "FixedU128",
@@ -467,7 +473,7 @@
                 "params": [
                     {
                         "name": "pool_id",
-                        "type": "u32"
+                        "type": "StablePoolId"
                     },
                     {
                         "name": "at",
@@ -475,7 +481,8 @@
                         "isHistoric": true,
                         "isOptional": true
                     }
-                ]
+                ],
+                "type": "NumberOrHex"
             }
         }
     },
