@@ -440,6 +440,23 @@
                 "params": [],
                 "type": "Vec<(VaultId, BalanceWrapper)>"
             }
+        },
+        "zenlinkStableAmm": {
+            "getA": {
+                "description": "Get amplification coefficient of pool",
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "u32"
+                    },
+                    {
+                        "name": "at",
+                        "type": "BlockHash",
+                        "isHistoric": true,
+                        "isOptional": true
+                    }
+                ]
+            }
         }
     },
     "alias": {
