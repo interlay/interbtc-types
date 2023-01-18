@@ -333,10 +333,6 @@
                     {
                         "name": "lock_time",
                         "type": "Option<BlockNumber>"
-                    },
-                    {
-                        "name": "at",
-                        "type": "Option<BlockHash>"
                     }
                 ],
                 "type": "UnsignedFixedPoint"
@@ -347,10 +343,6 @@
                     {
                         "name": "vault_id",
                         "type": "VaultId"
-                    },
-                    {
-                        "name": "at",
-                        "type": "Option<BlockHash>"
                     }
                 ],
                 "type": "UnsignedFixedPoint"
