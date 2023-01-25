@@ -319,6 +319,34 @@
             }
         },
         "reward": {
+            "estimateEscrowRewardRate": {
+                "description": "Estimate the escrow reward rate for a given account",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "Option<Balance>"
+                    },
+                    {
+                        "name": "lock_time",
+                        "type": "Option<BlockNumber>"
+                    }
+                ],
+                "type": "UnsignedFixedPoint"
+            },
+            "estimateVaultRewardRate": {
+                "description": "Estimate the vault reward rate a given vault id",
+                "params": [
+                    {
+                        "name": "vault_id",
+                        "type": "VaultId"
+                    }
+                ],
+                "type": "UnsignedFixedPoint"
+            },
             "computeEscrowReward": {
                 "description": "Get a given user's rewards due",
                 "params": [
