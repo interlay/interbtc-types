@@ -495,7 +495,7 @@
                 "type": "Vec<(VaultId, BalanceWrapper)>"
             }
         },
-        "zenlinkStableAmm": {
+        "dexStable": {
             "getA": {
                 "description": "Get amplification coefficient of pool",
                 "params": [
