@@ -367,6 +367,23 @@
                 ],
                 "type": "BalanceWrapper"
             },
+            "computeFarmingReward": {
+                "description":"Get a given user's farming rewards due",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "pool_currency_id",
+                        "type": "CurrencyId"
+                    },
+                    {
+                        "name": "reward_currency_id",
+                        "type": "CurrencyId"
+                    }
+                ]
+            },
             "computeVaultReward": {
                 "description": "Get a given vault's rewards due",
                 "params": [
