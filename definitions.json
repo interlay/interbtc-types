@@ -382,7 +382,8 @@
                         "name": "reward_currency_id",
                         "type": "CurrencyId"
                     }
-                ]
+                ],
+                "type": "BalanceWrapper"
             },
             "computeVaultReward": {
                 "description": "Get a given vault's rewards due",
