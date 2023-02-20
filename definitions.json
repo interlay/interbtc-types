@@ -143,7 +143,7 @@
                         "isOptional": true
                     }
                 ],
-                "type": "(Liquidity, Shortfall, Liquidity, Shortfall)",
+                "type": "(Liquidity, Shortfall)",
                 "isSubscription": false,
                 "jsonrpc": "loans_getCollateralLiquidity",
                 "method": "getCollateralLiquidity",
@@ -163,7 +163,7 @@
                         "isOptional": true
                     }
                 ],
-                "type": "(Liquidity, Shortfall, Liquidity, Shortfall)",
+                "type": "(Liquidity, Shortfall)",
                 "isSubscription": false,
                 "jsonrpc": "loans_getLiquidationThresholdLiquidity",
                 "method": "getLiquidationThresholdLiquidity",
