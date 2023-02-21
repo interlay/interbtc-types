@@ -6,6 +6,9 @@
                 null
             ],
             "types": {
+                "AssetBalance": "Balance",
+                "AssetId": "CurrencyId",
+                "Balance": "u128",
                 "BalanceWrapper": {
                     "amount": "String"
                 },
@@ -47,6 +50,7 @@
                 "InterbtcStablePoolId": "u32",
                 "LendTokenId": "u32",
                 "StablePoolId": "u32",
+                "PoolId": "StablePoolId",
                 "Rate": "FixedU128",
                 "Ratio": "Permill",
                 "Liquidity": "FixedU128",
@@ -100,6 +104,283 @@
                     }
                 ],
                 "type": "void"
+            }
+        },
+        "dexGeneral": {
+            "getPairByAssetId": {
+                "params": [
+                    {
+                        "name": "asset_0",
+                        "type": "AssetId"
+                    },
+                    {
+                        "name": "asset_1",
+                        "type": "AssetId"
+                    }
+                ],
+                "type": "Option<PairInfo<AccountId, NumberOrHex, AssetId>>"
+            },
+            "getAmountInPrice": {
+                "params": [
+                    {
+                        "name": "supply",
+                        "type": "AssetBalance"
+                    },
+                    {
+                        "name": "path",
+                        "type": "Vec<AssetId>"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "getAmountOutPrice": {
+                "params": [
+                    {
+                        "name": "supply",
+                        "type": "AssetBalance"
+                    },
+                    {
+                        "name": "path",
+                        "type": "Vec<AssetId>"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "getEstimateLptoken": {
+                "params": [
+                    {
+                        "name": "asset_0",
+                        "type": "AssetId"
+                    },
+                    {
+                        "name": "asset_1",
+                        "type": "AssetId"
+                    },
+                    {
+                        "name": "amount_0_desired",
+                        "type": "AssetBalance"
+                    },
+                    {
+                        "name": "amount_1_desired",
+                        "type": "AssetBalance"
+                    },
+                    {
+                        "name": "amount_0_min",
+                        "type": "AssetBalance"
+                    },
+                    {
+                        "name": "amount_1_min",
+                        "type": "AssetBalance"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "calculateRemoveLiquidity": {
+                "params": [
+                    {
+                        "name": "asset_0",
+                        "type": "AssetId"
+                    },
+                    {
+                        "name": "asset_1",
+                        "type": "AssetId"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "AssetBalance"
+                    }
+                ],
+                "type": "Option<(AssetBalance, AssetBalance)>"
+            }
+        },
+        "dexStable": {
+            "getVirtualPrice": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "getA": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "getAPrecise": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "getCurrencies": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "Vec<CurrencyId>"
+            },
+            "getCurrency": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    },
+                    {
+                        "name": "index",
+                        "type": "u32"
+                    }
+                ],
+                "type": "CurrencyId"
+            },
+            "getLpCurrency": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "CurrencyId"
+            },
+            "getCurrencyIndex": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    },
+                    {
+                        "name": "currency",
+                        "type": "CurrencyId"
+                    }
+                ],
+                "type": "u32"
+            },
+            "getCurrencyPrecisionMultipliers": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "Vec<NumberOrHex>"
+            },
+            "getCurrencyBalances": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "Vec<NumberOrHex>"
+            },
+            "getNumberOfCurrencies": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "u32"
+            },
+            "getAdminBalances": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    }
+                ],
+                "type": "Vec<NumberOrHex>"
+            },
+            "getAdminBalance": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    },
+                    {
+                        "name": "index",
+                        "type": "u32"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "calculateCurrencyAmount": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    },
+                    {
+                        "name": "amounts",
+                        "type": "Vec<Balance>"
+                    },
+                    {
+                        "name": "deposit",
+                        "type": "bool"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "calculateSwap": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    },
+                    {
+                        "name": "in_index",
+                        "type": "u32"
+                    },
+                    {
+                        "name": "out_index",
+                        "type": "u32"
+                    },
+                    {
+                        "name": "in_amount",
+                        "type": "Balance"
+                    }
+                ],
+                "type": "NumberOrHex"
+            },
+            "calculateRemoveLiquidity": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "Balance"
+                    }
+                ],
+                "type": "Vec<NumberOrHex>"
+            },
+            "calculateRemoveLiquidityOneCurrency": {
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "PoolId"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "Balance"
+                    },
+                    {
+                        "name": "index",
+                        "type": "u32"
+                    }
+                ],
+                "type": "NumberOrHex"
             }
         },
         "escrow": {
