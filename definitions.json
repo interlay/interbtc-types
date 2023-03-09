@@ -47,6 +47,12 @@
                 "InterbtcStablePoolId": "u32",
                 "LendTokenId": "u32",
                 "StablePoolId": "u32",
+                "NumberOrHex": {
+                    "_enum": {
+                        "Number": "u64",
+                        "Hex": "U256"
+                    }
+                },
                 "Rate": "FixedU128",
                 "Ratio": "Permill",
                 "Liquidity": "FixedU128",
@@ -361,6 +367,24 @@
                 ],
                 "type": "BalanceWrapper"
             },
+            "computeFarmingReward": {
+                "description":"Get a given user's farming rewards due",
+                "params": [
+                    {
+                        "name": "account_id",
+                        "type": "AccountId"
+                    },
+                    {
+                        "name": "pool_currency_id",
+                        "type": "CurrencyId"
+                    },
+                    {
+                        "name": "reward_currency_id",
+                        "type": "CurrencyId"
+                    }
+                ],
+                "type": "BalanceWrapper"
+            },
             "computeVaultReward": {
                 "description": "Get a given vault's rewards due",
                 "params": [
@@ -487,6 +511,24 @@
                 "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
                 "params": [],
                 "type": "Vec<(VaultId, BalanceWrapper)>"
+            }
+        },
+        "dexStable": {
+            "getA": {
+                "description": "Get amplification coefficient of pool",
+                "params": [
+                    {
+                        "name": "pool_id",
+                        "type": "StablePoolId"
+                    },
+                    {
+                        "name": "at",
+                        "type": "BlockHash",
+                        "isHistoric": true,
+                        "isOptional": true
+                    }
+                ],
+                "type": "NumberOrHex"
             }
         }
     },
