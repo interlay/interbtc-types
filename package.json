@@ -1,6 +1,6 @@
 {
     "name": "@interlay/interbtc-types",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Substrate types used in InterBTC parachain",
     "type": "module",
     "main": "build/index.js",
@@ -17,6 +17,9 @@
         "build": "rm -rf build && tsc -p tsconfig.json",
         "prepublish": "yarn build"
     },
+    "files": [
+        "build/**/*"
+    ],
     "devDependencies": {
         "typescript": "5.2.2"
     }
