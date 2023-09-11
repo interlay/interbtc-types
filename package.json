@@ -17,6 +17,9 @@
         "build": "rm -rf build && tsc -p tsconfig.json",
         "prepublish": "yarn build"
     },
+    "files": [
+        "build/**/*"
+    ],
     "devDependencies": {
         "typescript": "5.2.2"
     }
