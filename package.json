@@ -14,7 +14,7 @@
         "InterBTC"
     ],
     "scripts": {
-        "build": "rm -r build && tsc -p tsconfig.json",
+        "build": "rm -rf build && tsc -p tsconfig.json",
         "prepublish": "yarn build"
     },
     "devDependencies": {
