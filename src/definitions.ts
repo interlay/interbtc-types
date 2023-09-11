@@ -1,4 +1,6 @@
-{
+import { Definitions } from "./types";
+
+export const definitions: Definitions = {
     "types": [
         {
             "minmax": [
@@ -558,4 +560,4 @@
             "intr"
         ]
     }
-}
+};
